@@ -12,7 +12,7 @@ const AudioCard = ({ audioData }) => {
 }
 
 AudioCard.propTypes = {
-  audioData: PropTypes.array
+  audioData: PropTypes.object
 }
 
 export default AudioCard
