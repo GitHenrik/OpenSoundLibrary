@@ -1,24 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import MainHeader from './components/MainHeader'
+import Footer from './components/Footer'
+import FrontPage from './components/FrontPage'
+import AboutPage from './components/AboutPage'
+import './css/base.css'
+import {
+  BrowserRouter as Router,
+  Switch, Route
+} from "react-router-dom"
+import React, { useState, useEffect } from 'react';
 
-function App() {
+const App = () => {
+  const [searchValue, setSearchValue] = useState("Search for artists, songs, genres...")
+  const [audioCards, setAudioCards] = useState([])
+
+  const tempAudioCards = [
+    {
+      id: 0,
+      song_name: "Super Song",
+      artist: "Super Artist",
+    },
+    {
+      id: 1,
+      song_name: "Mega Song",
+      artist: "Mega Artist",
+    }
+  ]
+
+  useEffect(() => {
+    setAudioCards(tempAudioCards)
+  }, [])
+
+  const handleSearchValue = event => {
+    setSearchValue(event.target.value)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    <MainHeader/>
+    <div id="menu-divider"/>
+    <Switch>
+      
+      <Route path="/songs/:id"><div>secret song page</div></Route>
+      <Route path="/about"><AboutPage/></Route>
+      <Route path="/"><FrontPage audioCards={audioCards} searchValue={searchValue} handleSearchValue={handleSearchValue}/></Route>
+     
+    </Switch>
+    
+    <Footer/>
+    </Router>
   );
 }
 

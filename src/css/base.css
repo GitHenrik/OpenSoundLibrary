@@ -1,0 +1,104 @@
+/* @media only screen and (max-width: 768px) {
+  .horizontal-container {
+    flex-direction: column;
+  }
+} */
+
+* {
+  box-sizing: border-box;
+  color: #ffffff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+}
+
+div {
+  border: 1px dotted gray;
+}
+
+.main-header {
+  height: 5rem;
+  justify-content: space-between;
+  background: #111111;
+  position: sticky;
+  top: 0;
+}
+
+.header-icon {
+  width: 3rem;
+  height: 3rem;
+  padding-top: 1rem;
+  background: radial-gradient(closest-side, #888888, #111111);
+}
+
+#menu-divider {
+  height: 0.5rem;
+  width: 100%;
+  background: linear-gradient(to right, #370031, #eaf27c);
+}
+
+.main-body {
+  background: linear-gradient(#65005a, #0b0033);
+}
+
+.horizontal-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.vertical-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.centered-item {
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+
+.sidebar-left {
+  flex: 1;
+  order: 1;
+}
+
+.sidebar-right {
+  flex: 1;
+  order: 3;
+}
+.main-content {
+  flex: 3;
+  order: 2;
+  justify-content: center;
+}
+
+#music-search-form {
+  margin: 2rem 0;
+}
+
+#music-search-bar {
+  width: 60%;
+  background: #ffffff;
+  color: #888888;
+}
+
+#music-search-button {
+  color: black;
+}
+
+.footer {
+  background: #111111;
+}
+
+.footer-content-container {
+  flex: 3;
+}
+
+.footer-fill {
+  flex: 1;
+}
+
+#footer-title {
+  text-align: left;
+}
