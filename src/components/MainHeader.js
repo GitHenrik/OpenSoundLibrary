@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
-import PropTypes from 'prop-types'
+import IconButton from './IconButton'
 
 const Wrapper = styled.div`
   background-color: #111111;
@@ -24,7 +24,7 @@ const Header = styled.header`
   @media (min-width: 768px) {
     width: 768px;
     margin: auto;
-    padding: 2rem 0;
+    padding: 1rem 0;
   }
 `
 
@@ -32,25 +32,14 @@ const Brand = styled.h1`
   font-family: Open Sans;
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
-  line-height: 33px;
+  font-size: 1.5rem;
   letter-spacing: -0.05em;
   color: #FFFFFF;
   margin: 0;
-`
-
-const IconButton = styled.button`
-  background: none;
-  border: none;
-  display: ${props => props.hideOnMobile ? 'none' : 'block'};
   @media (min-width: 768px) {
-    display: block;
+    font-size: 1.875rem;
   }
 `
-
-IconButton.propTypes = {
-  hideOnMobile: PropTypes.bool
-}
 
 const MainHeader = () => {
   return (
