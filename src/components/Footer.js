@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const Footer = () => {
   return (
@@ -15,8 +15,8 @@ const Footer = () => {
               <div>About</div>
               <div>Source code</div>
             </div>
-          </div> 
-          </div>  
+          </div>
+          </div>
       </div>
     <div className="footer-fill"/>
     <div className="footer-fill"/>
@@ -26,4 +26,4 @@ const Footer = () => {
   )
 }
 
-export default Footer;
+export default Footer

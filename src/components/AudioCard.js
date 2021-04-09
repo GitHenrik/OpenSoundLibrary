@@ -1,6 +1,7 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const AudioCard = ({audioData}) => {
+const AudioCard = ({ audioData }) => {
   return (
   <><div>
   Artist:{audioData.artist}
@@ -10,5 +11,8 @@ const AudioCard = ({audioData}) => {
 </div></>)
 }
 
-export default AudioCard
+AudioCard.propTypes = {
+  audioData: PropTypes.array
+}
 
+export default AudioCard
