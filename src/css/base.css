@@ -15,21 +15,6 @@ div {
   border: 1px dotted gray;
 }
 
-.main-header {
-  height: 5rem;
-  justify-content: space-between;
-  background: #111111;
-  position: sticky;
-  top: 0;
-}
-
-.header-icon {
-  width: 3rem;
-  height: 3rem;
-  padding-top: 1rem;
-  background: radial-gradient(closest-side, #888888, #111111);
-}
-
 #menu-divider {
   height: 0.5rem;
   width: 100%;
