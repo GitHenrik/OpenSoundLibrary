@@ -19,11 +19,12 @@ const Header = styled.header`
   background: #111111;
   position: sticky;
   top: 0;
-  padding: 1rem;
+  padding: 1rem; 
   align-items: center;
   @media (min-width: 768px) {
     width: 768px;
-    margin: auto
+    margin: auto;
+    padding: 2rem 0;
   }
 `
 
