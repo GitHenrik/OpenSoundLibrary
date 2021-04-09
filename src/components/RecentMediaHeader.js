@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const RecentMediaHeader = () => {
   return (
@@ -13,7 +13,7 @@ const RecentMediaHeader = () => {
               <div>
                 <i className="fas fa-arrow-circle-right"></i>
               </div>
-            
+
           </div>
         </div>
   )

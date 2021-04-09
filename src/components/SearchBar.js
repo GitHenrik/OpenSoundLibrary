@@ -1,12 +1,13 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const SearchBar = ({searchValue, handleSearchValue}) => {
+const SearchBar = ({ searchValue, handleSearchValue }) => {
   return (
         <div>
           <form id="music-search-form">
-          <input 
-          id="music-search-bar" 
-          type="text" 
+          <input
+          id="music-search-bar"
+          type="text"
           placeholder="Search for artists, songs, genres..."
           value={searchValue}
           onChange={handleSearchValue}/>
@@ -14,7 +15,11 @@ const SearchBar = ({searchValue, handleSearchValue}) => {
           </form>
         </div>
   )
+}
 
+SearchBar.propTypes = {
+  searchValue: PropTypes.string,
+  handleSearchValue: PropTypes.func
 }
 
 export default SearchBar
