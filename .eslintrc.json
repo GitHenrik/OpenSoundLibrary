@@ -20,7 +20,9 @@
         "react"
     ],
     "rules": {
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "no-unused-vars": "warn",
+        "no-multiple-empty-lines": "warn"
     },
     "settings": {
         "react": {
