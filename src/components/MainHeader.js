@@ -12,6 +12,12 @@ const Wrapper = styled.div`
   background-color: #111111;
   width: 100%;
   height: 5.1875rem;
+
+`
+const Divider = styled.div`
+height: 4px;
+width: 100%;
+background: linear-gradient(to right, #370031, #eaf27c);
 `
 
 const Header = styled.header`
@@ -62,6 +68,7 @@ const userLinks = [
 
 const MainHeader = () => {
   return (
+    <>
     <Wrapper>
       <Header>
         <Dropdown links={menuLinks}>
@@ -73,6 +80,8 @@ const MainHeader = () => {
         </Dropdown>
       </Header>
     </Wrapper>
+    <Divider/>
+    </>
   )
 }
 
