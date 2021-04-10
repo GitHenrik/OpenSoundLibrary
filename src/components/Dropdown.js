@@ -96,6 +96,27 @@ const Dropdown = ({ children, links }) => {
     }
   }
 
+  const renderMenuItem = (listItem, index) => {
+    if (listItem.onClick) {
+      const handleClick = (e) => {
+        e.preventDefault()
+        listItem.onClick()
+      }
+
+      return (
+        <li key={index} role="menuitem">
+          <a href="#" onClick={handleClick}>{listItem.label}</a>
+        </li>
+      )
+    }
+
+    return (
+      <li key={index} role="menuitem">
+        <a href={listItem.href}>{listItem.label}</a>
+      </li>
+    )
+  }
+
   return (
     <DropdownWrapper ref={dropdownRef}>
       <ButtonBase
@@ -111,11 +132,7 @@ const Dropdown = ({ children, links }) => {
         topOffset={dropdownRef.current?.offsetHeight}
         position={dropdownState.position}
       >
-        {links.map((l, i) => (
-          <li key={i} role="menuitem">
-            <a href={l.href}>{l.label}</a>
-          </li>
-        ))}
+        {links.map(renderMenuItem)}
       </DropdownMenu>
     </DropdownWrapper>
   )
@@ -125,7 +142,8 @@ Dropdown.propTypes = {
   children: PropTypes.node,
   links: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,
-    href: PropTypes.string
+    href: PropTypes.string,
+    onClick: PropTypes.func
   }))
 }
 
