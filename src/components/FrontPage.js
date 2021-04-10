@@ -2,21 +2,60 @@ import React from 'react'
 import SearchBar from './SearchBar'
 import RecentMedia from './RecentMedia'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+const SidebarLeft = styled.div`
+  display: ${props => props.hideOnMobile ? 'none' : 'block'};
+  flex: 1;
+  order: 1;
+  @media (min-width: 768px) {
+    display: block;
+  }
+`
+
+const SidebarRight = styled.div`
+  display: ${props => props.hideOnMobile ? 'none' : 'block'};
+  flex: 1;
+  order: 3;
+  @media (min-width: 768px) {
+    display: block;
+  }
+`
+
+const MainContent = styled.div`
+  flex: 3;
+  order: 2;
+`
+
+const Banner = styled.div`
+  text-align: center;
+`
+
+const SearchBarContainer = styled.div`
+  text-align: center;
+`
+
+const FrontPageContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(#65005a, #0b0033);
+`
 
 const FrontPage = props => {
   return (
-    <div className="horizontal-container main-body">
-      <div className="sidebar-left"/>
-      <div className="vertical-container main-content">
-        <div>
+    <FrontPageContainer>
+      <SidebarLeft hideOnMobile/>
+      <MainContent>
+        <Banner>
           <h3>Explore sounds. Upload your sounds.</h3>
-        </div>
-        <SearchBar searchValue={props.searchValue} handleSearchValue={props.handleSearchValue}/>
+        </Banner>
+        <SearchBarContainer>
+          <SearchBar searchValue={props.searchValue} handleSearchValue={props.handleSearchValue}/>
+        </SearchBarContainer>
         <RecentMedia audioCards={props.audioCards}/>
-        </div>
-
-      <div className="sidebar-right"/>
-    </div>
+        </MainContent>
+        <SidebarRight hideOnMobile/>
+    </FrontPageContainer>
   )
 }
 

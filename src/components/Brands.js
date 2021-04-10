@@ -14,13 +14,22 @@ const Brand = styled.h1`
 `
 
 const LesserBrand = styled.h3`
-font-family: Open Sans;
-font-style: normal;
-font-weight: bold;
-font-size: 1.5rem;
-margin-bottom: 1.25rem;
-letter-spacing: -0.05em;
-color: #FFFFFF;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.05em;
+  color: #FFFFFF;
 `
 
-export { Brand, LesserBrand }
+const MinorBrand = styled.h5`
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+  color: #B0B0B0;
+`
+
+export { Brand, LesserBrand, MinorBrand }

@@ -15,47 +15,16 @@ div {
   border: 1px dotted gray;
 }
 
-#menu-divider {
-  height: 0.5rem;
-  width: 100%;
-  background: linear-gradient(to right, #370031, #eaf27c);
-}
-
-.main-body {
-  background: linear-gradient(#65005a, #0b0033);
-}
-
-.horizontal-container {
-  display: flex;
-  justify-content: space-between;
-}
-
 .vertical-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
 }
 
 .centered-item {
   justify-content: center;
   text-align: center;
   margin: auto;
-}
-
-.sidebar-left {
-  flex: 1;
-  order: 1;
-}
-
-.sidebar-right {
-  flex: 1;
-  order: 3;
-}
-.main-content {
-  flex: 3;
-  order: 2;
-  justify-content: center;
 }
 
 #music-search-form {
