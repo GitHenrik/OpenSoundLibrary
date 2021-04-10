@@ -2,6 +2,7 @@ import MainHeader from './components/MainHeader'
 import Footer from './components/Footer'
 import FrontPage from './components/FrontPage'
 import AboutPage from './components/AboutPage'
+import SongPage from './components/SongPage'
 import './css/base.css'
 import {
   BrowserRouter as Router,
@@ -40,6 +41,7 @@ const App = () => {
     <Switch>
 
       <Route path="/songs/:id"><div>secret song page</div></Route>
+      <Route path="/songs"><SongPage/></Route>
       <Route path="/about"><AboutPage/></Route>
       <Route path="/"><FrontPage audioCards={audioCards} searchValue={searchValue} handleSearchValue={handleSearchValue}/></Route>
 

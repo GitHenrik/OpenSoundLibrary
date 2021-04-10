@@ -12,6 +12,9 @@ const CardContainer = styled.div`
   @media (min-width: 768px) {
     flex-direction: row
   }
+  background: #111111;
+  //margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 `
 
 const PictureContainer = styled.img`
@@ -40,6 +43,7 @@ const GenreTag = styled.div`
   text-align: center;
   letter-spacing: -0.02em;
   color: #000000;
+  margin-right: 1rem;
 `
 
 const AudioDataContainer = styled.div`
@@ -66,6 +70,7 @@ const AudioCardBlock = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 1rem;
 `
 
 const AudioDurationContainer = styled.div`
@@ -80,13 +85,18 @@ line-height: 25px;
 color: #B0B0B0;
 `
 
+const AudioDataNumber = styled.div`
+  padding: 0.5rem;
+  display: inline-block;
+`
+
 const AudioCard = ({ audioData }) => {
   return (
   <CardContainer>
     <PictureContainer src="#" alt="A picture of the album"/>
     <AudioCardBlock>
       <AudioInformation>
-        <LesserBrand>Lorem Song</LesserBrand>
+        <LesserBrand>Song about Loremious Ipsumulation</LesserBrand>
         <MinorBrand>Ipsum Artist</MinorBrand>
         <GenreContainer>
           <GenreTag>HOP HIP</GenreTag>
@@ -95,15 +105,21 @@ const AudioCard = ({ audioData }) => {
         <AudioDataContainer>
         <AudioData>
           <FontAwesomeIcon icon={faCompactDisc} />
-          Like #
+          <AudioDataNumber>
+          LikeCount
+          </AudioDataNumber>
         </AudioData>
         <AudioData>
           <FontAwesomeIcon icon={faCompactDisc} />
-          Listen #
+          <AudioDataNumber>
+          ListenCount
+          </AudioDataNumber>
         </AudioData>
         <AudioData>
           <FontAwesomeIcon icon={faCompactDisc} />
-          Download #
+          <AudioDataNumber>
+          DownloadCount
+          </AudioDataNumber>
         </AudioData>
         </AudioDataContainer>
       </AudioInformation>
