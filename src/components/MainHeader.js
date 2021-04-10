@@ -4,8 +4,9 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
-import IconButton from './IconButton'
+
 import { Brand } from './Brands'
+import Dropdown from './Dropdown'
 
 const Wrapper = styled.div`
   background-color: #111111;
@@ -29,17 +30,47 @@ const Header = styled.header`
   }
 `
 
+const menuLinks = [
+  {
+    label: 'Find sounds',
+    href: '/'
+  },
+  {
+    label: 'Upload',
+    href: '/'
+  },
+  {
+    label: 'About',
+    href: '/'
+  },
+  {
+    label: 'Source code',
+    href: '/'
+  }
+]
+
+const userLinks = [
+  {
+    label: 'Sign in with Google',
+    href: '/'
+  },
+  {
+    label: 'About',
+    href: '/'
+  }
+]
+
 const MainHeader = () => {
   return (
     <Wrapper>
       <Header>
-        <IconButton hideOnMobile>
-          <FontAwesomeIcon icon={faCompactDisc} />
-        </IconButton>
+        <Dropdown links={menuLinks}>
+          <FontAwesomeIcon size="lg" icon={faCompactDisc} />
+        </Dropdown>
         <Brand>Open Sound Lib</Brand>
-        <IconButton>
+        <Dropdown links={userLinks}>
           <FontAwesomeIcon size="lg" icon={faUser} />
-        </IconButton>
+        </Dropdown>
       </Header>
     </Wrapper>
   )
