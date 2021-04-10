@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-opensoundlibrary-dev-165113-authRole",
+      "UnauthRoleArn": "arn:aws:iam::256356534235:role/amplify-opensoundlibrary-dev-165113-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::256356534235:role/amplify-opensoundlibrary-dev-165113-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-opensoundlibrary-dev-165113-deployment",
+      "UnauthRoleName": "amplify-opensoundlibrary-dev-165113-unauthRole",
+      "StackName": "amplify-opensoundlibrary-dev-165113",
+      "StackId": "arn:aws:cloudformation:eu-central-1:256356534235:stack/amplify-opensoundlibrary-dev-165113/d1dc57b0-9a03-11eb-b712-06421c95adf2",
+      "AmplifyAppId": "dh2mwslgezhh4"
+    },
+    "categories": {
+      "auth": {
+        "opensoundlibrary4e4027cb": {}
+      }
+    }
+  }
+}

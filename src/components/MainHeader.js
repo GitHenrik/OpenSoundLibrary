@@ -1,12 +1,14 @@
-import React from 'react'
-import '../css/base.css'
+import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { Auth } from 'aws-amplify'
 
+import '../css/base.css'
 import { Brand } from './Brands'
 import Dropdown from './Dropdown'
+import useUser from '../hooks/useUser'
 
 const Wrapper = styled.div`
   background-color: #111111;
@@ -55,32 +57,48 @@ const menuLinks = [
   }
 ]
 
-const userLinks = [
-  {
-    label: 'Sign in with Google',
-    href: '/'
-  },
-  {
-    label: 'About',
-    href: '/'
+/**
+ * Return user menu links depending whether user is authenticated or not
+ * @param {Boolean} isAuthenticated
+ */
+const getUserMenuLinks = (isAuthenticated) => {
+  if (isAuthenticated) {
+    return [
+      {
+        label: 'My sounds',
+        href: '/'
+      },
+      {
+        label: 'Logout',
+        onClick: () => Auth.signOut()
+      }
+    ]
   }
-]
+
+  return [{
+    label: 'Sign in with Google',
+    onClick: () => Auth.federatedSignIn({ provider: 'Google' })
+  }]
+}
 
 const MainHeader = () => {
+  const user = useUser()
+  const userLinks = useMemo(() => getUserMenuLinks(Boolean(user)), [user])
+
   return (
     <>
-    <Wrapper>
-      <Header>
-        <Dropdown links={menuLinks}>
-          <FontAwesomeIcon size="lg" icon={faCompactDisc} />
-        </Dropdown>
-        <Brand>Open Sound Lib</Brand>
-        <Dropdown links={userLinks}>
-          <FontAwesomeIcon size="lg" icon={faUser} />
-        </Dropdown>
-      </Header>
-    </Wrapper>
-    <Divider/>
+      <Wrapper>
+        <Header>
+          <Dropdown links={menuLinks}>
+            <FontAwesomeIcon size="lg" icon={faCompactDisc} />
+          </Dropdown>
+          <Brand>Open Sound Lib</Brand>
+          <Dropdown links={userLinks}>
+            <FontAwesomeIcon size="lg" icon={faUser} />
+          </Dropdown>
+        </Header>
+      </Wrapper>
+      <Divider/>
     </>
   )
 }
