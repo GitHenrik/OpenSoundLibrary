@@ -15,18 +15,6 @@ div {
   border: 1px dotted gray;
 }
 
-.vertical-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.centered-item {
-  justify-content: center;
-  text-align: center;
-  margin: auto;
-}
-
 #music-search-form {
   margin: 2rem 0;
 }
@@ -41,16 +29,8 @@ div {
   color: black;
 }
 
-.footer {
-  background: #111111;
-}
-
 .footer-content-container {
   flex: 3;
-}
-
-.footer-fill {
-  flex: 1;
 }
 
 #footer-title {
