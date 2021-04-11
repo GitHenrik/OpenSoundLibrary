@@ -5,20 +5,28 @@ import { LesserBrand, MinorBrand } from './Brands'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons'
 
-const CardContainer = styled.div`
+const AudioCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   @media (min-width: 768px) {
-    flex-direction: row
+    flex-direction: row;
+    height: 241px;
+    width: 729px;
   }
   background: #111111;
-  //margin-bottom: 24px;
   margin-bottom: 1.5rem;
+  border-right: 4px solid #EAF27C;
 `
 
 const PictureContainer = styled.img`
-  object-fit: fill;
+  width: 100%;
+  height: 100vmin;
+  object-fit: cover;
+  @media (min-width: 768px) {
+    width: 241px;
+    height: 100%;
+  }
 `
 
 const AudioInformation = styled.div`
@@ -53,6 +61,7 @@ const AudioDataContainer = styled.div`
 
 const AudioData = styled.div`
   flex-direction: row;
+  flex-wrap: nowrap;
   display: inline-block;
   padding-right: 1rem;
 `
@@ -68,6 +77,7 @@ const AudioControlButtonContainer = styled.div`
 
 const AudioCardBlock = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem;
@@ -92,8 +102,8 @@ const AudioDataNumber = styled.div`
 
 const AudioCard = ({ audioData }) => {
   return (
-  <CardContainer>
-    <PictureContainer src="#" alt="A picture of the album"/>
+  <AudioCardContainer>
+    <PictureContainer src={audioData.src} alt="A picture of the album"/>
     <AudioCardBlock>
       <AudioInformation>
         <LesserBrand>Song about Loremious Ipsumulation</LesserBrand>
@@ -132,7 +142,7 @@ const AudioCard = ({ audioData }) => {
         </AudioControlButtonContainer>
       </AudioControls>
       </AudioCardBlock>
-  </CardContainer>
+  </AudioCardContainer>
   )
 }
 

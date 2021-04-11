@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { BreadcrumbLink } from './common/Links'
+import Constants from '../Constants'
 
 const BreadcrumbContainer = styled.div`
   display: flex;
@@ -15,26 +17,12 @@ const BreadcrumbContainer = styled.div`
   padding-bottom: 27px;
 `
 
-const BreadLink = styled.a`
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 27px;
-  color: #E5E5E5;
-  &:hover {
-    color: white;
-  }
-`
-
 const Breadcrumb = () => {
   return (
   <BreadcrumbContainer>
-    <BreadLink href="#">Bread</BreadLink>
+    <BreadcrumbLink to={Constants.frontPage}>Front page</BreadcrumbLink>
     <FontAwesomeIcon icon={faAngleRight} />
-    <BreadLink href="#">Crumb</BreadLink>
-    <FontAwesomeIcon icon={faAngleRight} />
-    <BreadLink href="#">Menu</BreadLink>
+    <BreadcrumbLink to={Constants.songPage}>Crumb</BreadcrumbLink>
   </BreadcrumbContainer>)
 }
 

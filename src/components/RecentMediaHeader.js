@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { HorizontalWrapper } from './utils/Wrappers'
 
+import { FooterLink } from './common/Links'
+import Constants from '../Constants'
+
 const ShowAllMediaWrapper = styled.div`
   padding-right: 13px;
   padding-bottom: 15px;
@@ -24,7 +27,7 @@ const RecentMediaHeader = () => {
           </RecentMediaTitleWrapper>
           <HorizontalWrapper>
               <ShowAllMediaWrapper>
-                Show all <FontAwesomeIcon size="lg" icon={faAngleRight}/>
+                <FooterLink to={Constants.songPage}>Show all</FooterLink><FontAwesomeIcon size="lg" icon={faAngleRight}/>
               </ShowAllMediaWrapper>
               </HorizontalWrapper>
           </HorizontalWrapper>

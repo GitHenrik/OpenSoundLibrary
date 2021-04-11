@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { LesserBrand } from './Brands'
+import { FooterLink } from './common/Links'
+import Constants from '../Constants'
 
 const StyledFooter = styled.footer`
   background-color: #111111;
@@ -33,25 +35,16 @@ const Nav = styled.nav`
   }
 `
 
-const Link = styled.a`
-  text-decoration: none;
-  color: #E5E5E5;
-  margin-bottom: 0.5rem;
-  &:hover {
-    color: white;
-  }
-`
-
 const Footer = () => {
   return (
     <Wrapper>
       <StyledFooter>
           <LesserBrand>Open Sound Lib</LesserBrand>
           <Nav>
-          <Link href="#">Find sounds</Link>
-          <Link href="#">Upload</Link>
-          <Link href="#">About</Link>
-          <Link href="#">Source code</Link>
+          <FooterLink to={Constants.songPage}>Find sounds</FooterLink>
+          <FooterLink to={Constants.uploadPage}>Upload</FooterLink>
+          <FooterLink to={Constants.aboutPage}>About</FooterLink>
+          <FooterLink as="a" href={Constants.sourceCodePage}>Source code</FooterLink>
           </Nav>
       </StyledFooter>
       </Wrapper>

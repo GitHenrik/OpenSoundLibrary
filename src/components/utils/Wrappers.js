@@ -6,4 +6,11 @@ const HorizontalWrapper = styled.div`
   margin: 0;
 `
 
-export { HorizontalWrapper }
+const VerticalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+`
+
+export { HorizontalWrapper, VerticalWrapper }

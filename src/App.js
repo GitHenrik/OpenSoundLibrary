@@ -3,7 +3,12 @@ import Footer from './components/Footer'
 import FrontPage from './components/FrontPage'
 import AboutPage from './components/AboutPage'
 import SongPage from './components/SongPage'
+import placeholder1 from './assets/images/placeholder1.jpg'
+import placeholder2 from './assets/images/placeholder2.jpg'
+import placeholder3 from './assets/images/placeholder3.jpg'
+import placeholder4 from './assets/images/placeholder4.jpg'
 import './css/base.css'
+import Constants from './Constants'
 import {
   BrowserRouter as Router,
   Switch, Route
@@ -18,12 +23,26 @@ const App = () => {
     {
       id: 0,
       song_name: 'Super Song',
-      artist: 'Super Artist'
+      artist: 'Super Artist',
+      src: placeholder1
     },
     {
       id: 1,
       song_name: 'Mega Song',
-      artist: 'Mega Artist'
+      artist: 'Mega Artist',
+      src: placeholder2
+    },
+    {
+      id: 2,
+      song_name: 'Mega Song',
+      artist: 'Mega Artist',
+      src: placeholder3
+    },
+    {
+      id: 3,
+      song_name: 'Mega Song',
+      artist: 'Mega Artist',
+      src: placeholder4
     }
   ]
 
@@ -40,10 +59,10 @@ const App = () => {
     <MainHeader/>
     <Switch>
 
-      <Route path="/songs/:id"><div>secret song page</div></Route>
-      <Route path="/songs"><SongPage/></Route>
-      <Route path="/about"><AboutPage/></Route>
-      <Route path="/"><FrontPage audioCards={audioCards} searchValue={searchValue} handleSearchValue={handleSearchValue}/></Route>
+      <Route path={Constants.singleSongPage}><div>secret song page</div></Route>
+      <Route path={Constants.songPage}><SongPage audioCards={audioCards}/></Route>
+      <Route path={Constants.aboutPage}><AboutPage/></Route>
+      <Route path={Constants.frontPage}><FrontPage audioCards={audioCards} searchValue={searchValue} handleSearchValue={handleSearchValue}/></Route>
 
     </Switch>
 
