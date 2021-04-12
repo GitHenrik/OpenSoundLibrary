@@ -2,12 +2,14 @@ import React from 'react'
 import RecentMediaHeader from './RecentMediaHeader'
 import RecentMediaContent from './RecentMediaContent'
 import PropTypes from 'prop-types'
-import { VerticalWrapper } from './utils/Wrappers'
+import { VerticalWrapper, HorizontalWrapper } from './utils/Wrappers'
 const RecentMedia = props => {
   return (
     <>
-    <RecentMediaHeader/>
     <VerticalWrapper>
+    <HorizontalWrapper>
+    <RecentMediaHeader/>
+    </HorizontalWrapper>
     <RecentMediaContent audioCards={props.audioCards}/>
     </VerticalWrapper>
     </>

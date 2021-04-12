@@ -14,23 +14,33 @@ const ShowAllMediaWrapper = styled.div`
 `
 
 const RecentMediaTitleWrapper = styled.div`
-padding-left: 10px;
-padding-bottom: 15px;
-margin: 0;
+  padding-left: 10px;
+  padding-bottom: 15px;
+  margin: 0;
+`
+
+const RecentMediaHeaderWrapper = styled.div`
+  width: 100%;
+  @media (min-width: 768px) {
+    width: 768px;
+    margin: auto;
+  }
 `
 
 const RecentMediaHeader = () => {
   return (
+    <RecentMediaHeaderWrapper>
         <HorizontalWrapper>
           <RecentMediaTitleWrapper>
             Recent uploads
           </RecentMediaTitleWrapper>
-          <HorizontalWrapper>
+              <HorizontalWrapper>
               <ShowAllMediaWrapper>
                 <FooterLink to={Constants.songPage}>Show all</FooterLink><FontAwesomeIcon size="lg" icon={faAngleRight}/>
               </ShowAllMediaWrapper>
               </HorizontalWrapper>
           </HorizontalWrapper>
+          </RecentMediaHeaderWrapper>
   )
 }
 
