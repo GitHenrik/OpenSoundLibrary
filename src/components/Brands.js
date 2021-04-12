@@ -13,6 +13,16 @@ const Brand = styled.h1`
   }
 `
 
+const SloganBrand = styled.h2`
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 54px;
+  color: #FFFFFF;
+  padding: 4rem 0 2rem;
+`
+
 const LesserBrand = styled.h3`
   font-family: Open Sans;
   font-style: normal;
@@ -32,4 +42,4 @@ const MinorBrand = styled.h5`
   color: #B0B0B0;
 `
 
-export { Brand, LesserBrand, MinorBrand }
+export { Brand, SloganBrand, LesserBrand, MinorBrand }

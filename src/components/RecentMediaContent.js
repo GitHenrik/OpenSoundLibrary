@@ -1,15 +1,17 @@
 import React from 'react'
 import AudioCard from './AudioCard'
 import PropTypes from 'prop-types'
+import { VerticalWrapper } from './utils/Wrappers'
+
 const RecentMediaContent = ({ audioCards }) => {
   return (
-  <div className="vertical-container">
+  <VerticalWrapper>
     {audioCards.map(audioData => {
       return (
         <AudioCard key={audioData.id} audioData={audioData}/>
       )
     })}
-  </div>)
+  </VerticalWrapper>)
 }
 
 RecentMediaContent.propTypes = {

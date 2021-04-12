@@ -3,6 +3,7 @@ import SearchBar from './SearchBar'
 import RecentMedia from './RecentMedia'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { SloganBrand } from './Brands'
 
 const SidebarLeft = styled.div`
   display: ${props => props.hideOnMobile ? 'none' : 'block'};
@@ -47,7 +48,7 @@ const FrontPage = props => {
       <SidebarLeft hideOnMobile/>
       <MainContent>
         <Banner>
-          <h3>Explore sounds. Upload your sounds.</h3>
+          <SloganBrand>Explore sounds. Upload your sounds.</SloganBrand>
         </Banner>
         <SearchBarContainer>
           <SearchBar searchValue={props.searchValue} handleSearchValue={props.handleSearchValue}/>

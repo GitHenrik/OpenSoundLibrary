@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import ButtonBase from './utils/ButtonBase'
 import useWindowSize from '../hooks/useWindowSize'
+import { Link } from 'react-router-dom'
 
 const DropdownWrapper = styled.div`
   position: relative;
@@ -97,6 +98,14 @@ const Dropdown = ({ children, links }) => {
   }
 
   const renderMenuItem = (listItem, index) => {
+    if (listItem.to) {
+      return (
+        <li key={index} role="menuitem">
+          <Link to={listItem.to}>{listItem.label}</Link>
+        </li>
+      )
+    }
+
     if (listItem.onClick) {
       const handleClick = (e) => {
         e.preventDefault()
@@ -143,7 +152,8 @@ Dropdown.propTypes = {
   links: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,
     href: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    to: PropTypes.string
   }))
 }
 

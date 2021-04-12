@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { Auth } from 'aws-amplify'
-
 import '../css/base.css'
 import { Brand } from './Brands'
 import Dropdown from './Dropdown'
 import useUser from '../hooks/useUser'
+import Constants from '../Constants'
 
 const Wrapper = styled.div`
   background-color: #111111;
@@ -41,19 +41,19 @@ const Header = styled.header`
 const menuLinks = [
   {
     label: 'Find sounds',
-    href: '/'
+    to: '/songs'
   },
   {
     label: 'Upload',
-    href: '/'
+    to: '/upload'
   },
   {
     label: 'About',
-    href: '/'
+    to: '/about'
   },
   {
     label: 'Source code',
-    href: '/'
+    href: Constants.sourceCodePage
   }
 ]
 
