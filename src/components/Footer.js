@@ -39,15 +39,17 @@ const Footer = () => {
   return (
     <Wrapper>
       <StyledFooter>
-          <LesserBrand>Open Sound Lib</LesserBrand>
-          <Nav>
+        <LesserBrand>Open Sound Lib</LesserBrand>
+        <Nav>
           <FooterLink to={Constants.songPage}>Find sounds</FooterLink>
           <FooterLink to={Constants.uploadPage}>Upload</FooterLink>
           <FooterLink to={Constants.aboutPage}>About</FooterLink>
-          <FooterLink as="a" href={Constants.sourceCodePage}>Source code</FooterLink>
-          </Nav>
+          <FooterLink as="a" href={Constants.sourceCodePage}>
+            Source code
+          </FooterLink>
+        </Nav>
       </StyledFooter>
-      </Wrapper>
+    </Wrapper>
   )
 }
 

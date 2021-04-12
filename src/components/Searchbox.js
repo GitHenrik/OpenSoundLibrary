@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Select } from 'antd'
 
 const SearchBoxForm = styled.form`
-  background: #2E2E2E;
+  background: #2e2e2e;
   padding: 1rem;
   margin-bottom: 2rem;
 `
@@ -16,19 +16,19 @@ const SearchBoxHeaderContainer = styled.div`
 
 const SearchBoxHeader = styled.div`
   font-family: Open Sans;
-font-style: normal;
-font-weight: 600;
-font-size: 24px;
-line-height: 33px;
-color: #FFFFFF;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  color: #ffffff;
 `
 
 const SearchBoxSelector = styled.div`
-  background: #2E2E2E;
+  background: #2e2e2e;
 `
 
 const SearchBoxContentContainer = styled.div`
-  display:flex;
+  display: flex;
 `
 
 const SearchBoxItem = styled.div`
@@ -36,21 +36,21 @@ const SearchBoxItem = styled.div`
 `
 
 const SearchBoxItemHeader = styled.div`
-font-family: Open Sans;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 25px;
-color: #FFFFFF;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+  color: #ffffff;
 `
 
 const SearchBoxInput = styled.input`
-font-family: Open Sans;
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-line-height: 25px;
-color: #454545;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  color: #454545;
 `
 
 const sortOptions = [
@@ -68,27 +68,23 @@ const Searchbox = () => {
   return (
     <SearchBoxForm>
       <SearchBoxHeaderContainer>
-      <SearchBoxHeader>
-       Find Sounds
-      </SearchBoxHeader>
-      <SearchBoxSelector>
-      Grid / List
-      </SearchBoxSelector>
+        <SearchBoxHeader>Find Sounds</SearchBoxHeader>
+        <SearchBoxSelector>Grid / List</SearchBoxSelector>
       </SearchBoxHeaderContainer>
       <SearchBoxContentContainer>
-      <SearchBoxItem>
-        <SearchBoxItemHeader>Search</SearchBoxItemHeader>
-        <SearchBoxInput type="text" placeholder="Track name"></SearchBoxInput>
-      </SearchBoxItem>
+        <SearchBoxItem>
+          <SearchBoxItemHeader>Search</SearchBoxItemHeader>
+          <SearchBoxInput type="text" placeholder="Track name"></SearchBoxInput>
+        </SearchBoxItem>
 
-      <SearchBoxItem>
-      <SearchBoxItemHeader>Sort by</SearchBoxItemHeader>
-      <Select options={sortOptions}/>
-      </SearchBoxItem>
-      <SearchBoxItem>
-      <SearchBoxItemHeader>Category</SearchBoxItemHeader>
-      <Select options={sortGenres}/>
-      </SearchBoxItem>
+        <SearchBoxItem>
+          <SearchBoxItemHeader>Sort by</SearchBoxItemHeader>
+          <Select options={sortOptions} />
+        </SearchBoxItem>
+        <SearchBoxItem>
+          <SearchBoxItemHeader>Category</SearchBoxItemHeader>
+          <Select options={sortGenres} />
+        </SearchBoxItem>
       </SearchBoxContentContainer>
     </SearchBoxForm>
   )

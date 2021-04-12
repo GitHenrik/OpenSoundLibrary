@@ -12,18 +12,19 @@ const BreadcrumbContainer = styled.div`
   font-weight: normal;
   font-size: 20px;
   line-height: 27px;
-  color: #E5E5E5;
+  color: #e5e5e5;
   padding-top: 55px;
   padding-bottom: 27px;
 `
 
 const Breadcrumb = () => {
   return (
-  <BreadcrumbContainer>
-    <BreadcrumbLink to={Constants.frontPage}>Front page</BreadcrumbLink>
-    <FontAwesomeIcon icon={faAngleRight} />
-    <BreadcrumbLink to={Constants.songPage}>Crumb</BreadcrumbLink>
-  </BreadcrumbContainer>)
+    <BreadcrumbContainer>
+      <BreadcrumbLink to={Constants.frontPage}>Front page</BreadcrumbLink>
+      <FontAwesomeIcon icon={faAngleRight} />
+      <BreadcrumbLink to={Constants.songPage}>Crumb</BreadcrumbLink>
+    </BreadcrumbContainer>
+  )
 }
 
 export default Breadcrumb

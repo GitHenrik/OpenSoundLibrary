@@ -9,14 +9,13 @@ import placeholder3 from './assets/images/placeholder3.jpg'
 import placeholder4 from './assets/images/placeholder4.jpg'
 import './css/base.css'
 import Constants from './Constants'
-import {
-  BrowserRouter as Router,
-  Switch, Route
-} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 
 const App = () => {
-  const [searchValue, setSearchValue] = useState('Search for artists, songs, genres...')
+  const [searchValue, setSearchValue] = useState(
+    'Search for artists, songs, genres...'
+  )
   const [audioCards, setAudioCards] = useState([])
 
   const tempAudioCards = [
@@ -50,23 +49,33 @@ const App = () => {
     setAudioCards(tempAudioCards)
   }, [])
 
-  const handleSearchValue = event => {
+  const handleSearchValue = (event) => {
     setSearchValue(event.target.value)
   }
 
   return (
     <Router>
-    <MainHeader/>
-    <Switch>
+      <MainHeader />
+      <Switch>
+        <Route path={Constants.singleSongPage}>
+          <div>secret song page</div>
+        </Route>
+        <Route path={Constants.songPage}>
+          <SongPage audioCards={audioCards} />
+        </Route>
+        <Route path={Constants.aboutPage}>
+          <AboutPage />
+        </Route>
+        <Route path={Constants.frontPage}>
+          <FrontPage
+            audioCards={audioCards}
+            searchValue={searchValue}
+            handleSearchValue={handleSearchValue}
+          />
+        </Route>
+      </Switch>
 
-      <Route path={Constants.singleSongPage}><div>secret song page</div></Route>
-      <Route path={Constants.songPage}><SongPage audioCards={audioCards}/></Route>
-      <Route path={Constants.aboutPage}><AboutPage/></Route>
-      <Route path={Constants.frontPage}><FrontPage audioCards={audioCards} searchValue={searchValue} handleSearchValue={handleSearchValue}/></Route>
-
-    </Switch>
-
-    <Footer/>
+      <Footer />
     </Router>
   )
 }

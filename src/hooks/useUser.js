@@ -9,8 +9,8 @@ const useUser = () => {
 
   useEffect(() => {
     Auth.currentAuthenticatedUser()
-      .then(user => setUser(user))
-      .catch(e => {
+      .then((user) => setUser(user))
+      .catch((e) => {
         if (e === 'The user is not authenticated') {
           setUser(null)
           return

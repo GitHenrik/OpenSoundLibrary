@@ -15,7 +15,7 @@ const AudioCardContainer = styled.div`
   }
   background: #111111;
   margin-bottom: 1.5rem;
-  border-right: 4px solid #EAF27C;
+  border-right: 4px solid #eaf27c;
 `
 
 const PictureContainer = styled.img`
@@ -42,7 +42,7 @@ const GenreContainer = styled.div`
 const GenreTag = styled.div`
   display: inline-block;
   padding: 0 0.75rem;
-  background: #EAF27C;
+  background: #eaf27c;
   border-radius: 27.5px;
   font-style: normal;
   font-weight: bold;
@@ -87,15 +87,15 @@ const AudioCardBlock = styled.div`
 `
 
 const AudioDurationContainer = styled.div`
-left: 90%;
-right: 3.97%;
-top: 10.79%;
-bottom: 78.84%;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 25px;
-color: #B0B0B0;
+  left: 90%;
+  right: 3.97%;
+  top: 10.79%;
+  bottom: 78.84%;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+  color: #b0b0b0;
 `
 
 const AudioDataNumber = styled.div`
@@ -104,70 +104,62 @@ const AudioDataNumber = styled.div`
 `
 
 const SongTitle = styled.div`
-font-family: Open Sans;
-font-style: normal;
-font-weight: normal;
-font-size: 26px;
-line-height: 35px;
-color: #FFFFFF;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 35px;
+  color: #ffffff;
 `
 
 const ArtistName = styled.div`
-font-family: Open Sans;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 22px;
-color: #B0B0B0;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #b0b0b0;
 `
 
 const AudioCard = ({ audioData }) => {
   return (
-  <AudioCardContainer>
-    <div>
-    <PictureContainer src={audioData.src} alt="A picture of the album"/>
-    </div>
-    <AudioCardBlock>
-      <AudioInformation>
+    <AudioCardContainer>
       <div>
-        <SongTitle>Song about Loremious</SongTitle>
-        <ArtistName>Ipsum Artist</ArtistName>
-        <GenreContainer>
-          <GenreTag>HOP HIP</GenreTag>
-          <GenreTag>SKA RAP</GenreTag>
-        </GenreContainer>
-        </div>
-        <AudioDataContainer>
-        <AudioData>
-          <FontAwesomeIcon icon={faCompactDisc} />
-          <AudioDataNumber>
-          Like#
-          </AudioDataNumber>
-        </AudioData>
-        <AudioData>
-          <FontAwesomeIcon icon={faCompactDisc} />
-          <AudioDataNumber>
-          Listen#
-          </AudioDataNumber>
-        </AudioData>
-        <AudioData>
-          <FontAwesomeIcon icon={faCompactDisc} />
-          <AudioDataNumber>
-          DL#
-          </AudioDataNumber>
-        </AudioData>
-        </AudioDataContainer>
-      </AudioInformation>
-      <AudioControls>
-        <AudioDurationContainer>
-          13:37
-        </AudioDurationContainer>
-        <AudioControlButtonContainer>
-        <FontAwesomeIcon icon={faCompactDisc} />
-        </AudioControlButtonContainer>
-      </AudioControls>
+        <PictureContainer src={audioData.src} alt="A picture of the album" />
+      </div>
+      <AudioCardBlock>
+        <AudioInformation>
+          <div>
+            <SongTitle>Song about Loremious</SongTitle>
+            <ArtistName>Ipsum Artist</ArtistName>
+            <GenreContainer>
+              <GenreTag>HOP HIP</GenreTag>
+              <GenreTag>SKA RAP</GenreTag>
+            </GenreContainer>
+          </div>
+          <AudioDataContainer>
+            <AudioData>
+              <FontAwesomeIcon icon={faCompactDisc} />
+              <AudioDataNumber>Like#</AudioDataNumber>
+            </AudioData>
+            <AudioData>
+              <FontAwesomeIcon icon={faCompactDisc} />
+              <AudioDataNumber>Listen#</AudioDataNumber>
+            </AudioData>
+            <AudioData>
+              <FontAwesomeIcon icon={faCompactDisc} />
+              <AudioDataNumber>DL#</AudioDataNumber>
+            </AudioData>
+          </AudioDataContainer>
+        </AudioInformation>
+        <AudioControls>
+          <AudioDurationContainer>13:37</AudioDurationContainer>
+          <AudioControlButtonContainer>
+            <FontAwesomeIcon icon={faCompactDisc} />
+          </AudioControlButtonContainer>
+        </AudioControls>
       </AudioCardBlock>
-  </AudioCardContainer>
+    </AudioCardContainer>
   )
 }
 

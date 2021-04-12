@@ -29,7 +29,7 @@ const List = styled.ul`
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 1);
   border-radius: 2px;
   overflow: hidden;
-  ${props => props.open ? '' : 'display: none;'}
+  ${(props) => (props.open ? '' : 'display: none;')}
 
   li {
     background: white;
@@ -38,8 +38,9 @@ const List = styled.ul`
     cursor: pointer;
   }
 
-  li:hover, li:focus {
-    background-color: #E5E5E5;
+  li:hover,
+  li:focus {
+    background-color: #e5e5e5;
   }
 `
 
@@ -53,13 +54,7 @@ List.propTypes = {
  * @returns {React.ReactNode} Select component
  */
 // #TODO: add keyboard support and improve accessibility
-const Select = ({
-  id,
-  placeholder = '',
-  value,
-  options = [],
-  onChange
-}) => {
+const Select = ({ id, placeholder = '', value, options = [], onChange }) => {
   const [open, setOpen] = useState(false)
   const selectRef = useRef(null)
 
@@ -67,8 +62,13 @@ const Select = ({
   const labelId = `${id}-label`
   const listId = `${id}-list`
 
-  const optsByValue = useMemo(() =>
-    options.reduce((obj, curr) => ({ ...obj, [curr.value]: { ...curr } }), {}), [options]
+  const optsByValue = useMemo(
+    () =>
+      options.reduce(
+        (obj, curr) => ({ ...obj, [curr.value]: { ...curr } }),
+        {}
+      ),
+    [options]
   )
 
   useEffect(() => {
@@ -90,13 +90,13 @@ const Select = ({
     setOpen(!open)
   }
 
-  const handleOutsideClick = e => {
+  const handleOutsideClick = (e) => {
     if (selectRef.current && !selectRef.current.contains(e.target)) {
       setOpen(false)
     }
   }
 
-  const handleOptionSelection = e => {
+  const handleOptionSelection = (e) => {
     if ((e.type === 'keydown' && e.key === 'Enter') || e.type === 'click') {
       onChange({
         ...e,
@@ -125,18 +125,17 @@ const Select = ({
 
   return (
     <SelectWrapper ref={selectRef}>
-      <InputBase
-        icon={<FontAwesomeIcon icon={faChevronDown} />}
-      >
+      <InputBase icon={<FontAwesomeIcon icon={faChevronDown} />}>
         <button
           id={`${id}-toggle`}
           aria-haspopup="listbox"
           aria-labelledby={[buttonId, labelId].join(' ')}
         >
-          {optsByValue[value]
-            ? optsByValue[value].label
-            : <Placeholder>{placeholder}</Placeholder>
-          }
+          {optsByValue[value] ? (
+            optsByValue[value].label
+          ) : (
+            <Placeholder>{placeholder}</Placeholder>
+          )}
         </button>
         <List
           id={listId}
@@ -154,10 +153,12 @@ const Select = ({
 
 Select.propTypes = {
   id: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    value: PropTypes.string
-  })),
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string
+    })
+  ),
   value: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func

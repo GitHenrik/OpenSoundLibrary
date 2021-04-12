@@ -5,9 +5,9 @@ import styled from 'styled-components'
 const StyledLabel = styled.label`
   font-size: 0.875rem;
   font-weight: 400;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0.25rem;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 1.125rem;
   }
 `
@@ -17,7 +17,9 @@ const StyledLabel = styled.label`
  * @param {Props} props Props containing input id and label text
  * @returns {React.ReactNode}
  */
-const Label = ({ inputId, label }) => <StyledLabel id={`${inputId}-label`}>{label}</StyledLabel>
+const Label = ({ inputId, label }) => (
+  <StyledLabel id={`${inputId}-label`}>{label}</StyledLabel>
+)
 
 Label.propTypes = {
   inputId: PropTypes.string.isRequired,

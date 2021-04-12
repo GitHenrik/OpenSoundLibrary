@@ -22,13 +22,15 @@ const SongPageHeaderContainer = styled.div`
 `
 
 const SongPage = ({ audioCards }) => {
-  return (<SongPageContent>
-  <SongPageHeaderContainer>
-  <Breadcrumb/>
-  <Searchbox/>
-  </SongPageHeaderContainer>
-  <RecentMedia audioCards={audioCards}/>
-  </SongPageContent>)
+  return (
+    <SongPageContent>
+      <SongPageHeaderContainer>
+        <Breadcrumb />
+        <Searchbox />
+      </SongPageHeaderContainer>
+      <RecentMedia audioCards={audioCards} />
+    </SongPageContent>
+  )
 }
 
 SongPage.propTypes = {

@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { SloganBrand } from './Brands'
 
 const SidebarLeft = styled.div`
-  display: ${props => props.hideOnMobile ? 'none' : 'block'};
+  display: ${(props) => (props.hideOnMobile ? 'none' : 'block')};
   flex: 1;
   order: 1;
   @media (min-width: 768px) {
@@ -15,7 +15,7 @@ const SidebarLeft = styled.div`
 `
 
 const SidebarRight = styled.div`
-  display: ${props => props.hideOnMobile ? 'none' : 'block'};
+  display: ${(props) => (props.hideOnMobile ? 'none' : 'block')};
   flex: 1;
   order: 3;
   @media (min-width: 768px) {
@@ -42,20 +42,23 @@ const FrontPageContainer = styled.div`
   background: linear-gradient(#65005a, #0b0033);
 `
 
-const FrontPage = props => {
+const FrontPage = (props) => {
   return (
     <FrontPageContainer>
-      <SidebarLeft hideOnMobile/>
+      <SidebarLeft hideOnMobile />
       <MainContent>
         <Banner>
           <SloganBrand>Explore sounds. Upload your sounds.</SloganBrand>
         </Banner>
         <SearchBarContainer>
-          <SearchBar searchValue={props.searchValue} handleSearchValue={props.handleSearchValue}/>
+          <SearchBar
+            searchValue={props.searchValue}
+            handleSearchValue={props.handleSearchValue}
+          />
         </SearchBarContainer>
-        <RecentMedia audioCards={props.audioCards}/>
-        </MainContent>
-        <SidebarRight hideOnMobile/>
+        <RecentMedia audioCards={props.audioCards} />
+      </MainContent>
+      <SidebarRight hideOnMobile />
     </FrontPageContainer>
   )
 }

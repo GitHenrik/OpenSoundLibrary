@@ -5,13 +5,12 @@ import { VerticalWrapper } from './utils/Wrappers'
 
 const RecentMediaContent = ({ audioCards }) => {
   return (
-  <VerticalWrapper>
-    {audioCards.map(audioData => {
-      return (
-        <AudioCard key={audioData.id} audioData={audioData}/>
-      )
-    })}
-  </VerticalWrapper>)
+    <VerticalWrapper>
+      {audioCards.map((audioData) => {
+        return <AudioCard key={audioData.id} audioData={audioData} />
+      })}
+    </VerticalWrapper>
+  )
 }
 
 RecentMediaContent.propTypes = {

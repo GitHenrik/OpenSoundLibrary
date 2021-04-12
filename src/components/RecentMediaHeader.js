@@ -30,17 +30,16 @@ const RecentMediaHeaderWrapper = styled.div`
 const RecentMediaHeader = () => {
   return (
     <RecentMediaHeaderWrapper>
+      <HorizontalWrapper>
+        <RecentMediaTitleWrapper>Recent uploads</RecentMediaTitleWrapper>
         <HorizontalWrapper>
-          <RecentMediaTitleWrapper>
-            Recent uploads
-          </RecentMediaTitleWrapper>
-              <HorizontalWrapper>
-              <ShowAllMediaWrapper>
-                <FooterLink to={Constants.songPage}>Show all</FooterLink><FontAwesomeIcon size="lg" icon={faAngleRight}/>
-              </ShowAllMediaWrapper>
-              </HorizontalWrapper>
-          </HorizontalWrapper>
-          </RecentMediaHeaderWrapper>
+          <ShowAllMediaWrapper>
+            <FooterLink to={Constants.songPage}>Show all</FooterLink>
+            <FontAwesomeIcon size="lg" icon={faAngleRight} />
+          </ShowAllMediaWrapper>
+        </HorizontalWrapper>
+      </HorizontalWrapper>
+    </RecentMediaHeaderWrapper>
   )
 }
 

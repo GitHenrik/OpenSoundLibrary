@@ -3,15 +3,15 @@ import RecentMediaHeader from './RecentMediaHeader'
 import RecentMediaContent from './RecentMediaContent'
 import PropTypes from 'prop-types'
 import { VerticalWrapper, HorizontalWrapper } from './utils/Wrappers'
-const RecentMedia = props => {
+const RecentMedia = (props) => {
   return (
     <>
-    <VerticalWrapper>
-    <HorizontalWrapper>
-    <RecentMediaHeader/>
-    </HorizontalWrapper>
-    <RecentMediaContent audioCards={props.audioCards}/>
-    </VerticalWrapper>
+      <VerticalWrapper>
+        <HorizontalWrapper>
+          <RecentMediaHeader />
+        </HorizontalWrapper>
+        <RecentMediaContent audioCards={props.audioCards} />
+      </VerticalWrapper>
     </>
   )
 }
