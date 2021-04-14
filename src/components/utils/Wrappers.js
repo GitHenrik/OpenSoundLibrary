@@ -13,4 +13,21 @@ const VerticalWrapper = styled.div`
   margin: 0;
 `
 
-export { HorizontalWrapper, VerticalWrapper }
+const WhiteIconWrapper = styled.div`
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+`
+
+const AudioControlButtonWrapper = styled.div`
+  margin: 0;
+  padding: 0;
+  color: #eaf27c;
+`
+
+export {
+  HorizontalWrapper,
+  VerticalWrapper,
+  WhiteIconWrapper,
+  AudioControlButtonWrapper
+}

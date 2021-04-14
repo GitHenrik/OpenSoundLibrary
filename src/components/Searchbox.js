@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Select } from 'antd'
+import PropTypes from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThList, faBorderAll } from '@fortawesome/free-solid-svg-icons'
 
 const SearchBoxForm = styled.form`
   background: #2e2e2e;
@@ -12,6 +15,7 @@ const SearchBoxHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+  height: 100%;
 `
 
 const SearchBoxHeader = styled.div`
@@ -24,7 +28,32 @@ const SearchBoxHeader = styled.div`
 `
 
 const SearchBoxSelector = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+  }
+`
+
+const SelectedComponent = styled.div`
+  background: #eaf27c;
+  color: #2e2e2e;
+  border: 1px solid #eaf27c;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const NonSelectedComponent = styled.div`
   background: #2e2e2e;
+  color: #eaf27c;
+  border: 1px solid #eaf27c;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const SearchBoxContentContainer = styled.div`
@@ -64,12 +93,26 @@ const sortGenres = [
   { value: 'classical', label: 'Classical' }
 ]
 
-const Searchbox = () => {
+const SearchBox = (props) => {
+  const ListSelectorView = props.listViewSelected
+    ? SelectedComponent
+    : NonSelectedComponent
+  const GridSelectorView = props.listViewSelected
+    ? NonSelectedComponent
+    : SelectedComponent
+
   return (
     <SearchBoxForm>
       <SearchBoxHeaderContainer>
         <SearchBoxHeader>Find Sounds</SearchBoxHeader>
-        <SearchBoxSelector>Grid / List</SearchBoxSelector>
+        <SearchBoxSelector onClick={props.handleViewSelection}>
+          <ListSelectorView>
+            <FontAwesomeIcon icon={faThList} />
+          </ListSelectorView>
+          <GridSelectorView>
+            <FontAwesomeIcon icon={faBorderAll} />
+          </GridSelectorView>
+        </SearchBoxSelector>
       </SearchBoxHeaderContainer>
       <SearchBoxContentContainer>
         <SearchBoxItem>
@@ -90,4 +133,9 @@ const Searchbox = () => {
   )
 }
 
-export default Searchbox
+SearchBox.propTypes = {
+  handleViewSelection: PropTypes.func,
+  listViewSelected: PropTypes.bool
+}
+
+export default SearchBox

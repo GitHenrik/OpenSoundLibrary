@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Breadcrumb from './Breadcrumb'
 import styled from 'styled-components'
-import RecentMedia from './RecentMedia'
-import Searchbox from './Searchbox'
+import RecentMediaContent from './RecentMediaContent'
+import SearchBox from './SearchBox'
 import PropTypes from 'prop-types'
+import { VerticalWrapper } from './utils/Wrappers'
 
 const SongPageContent = styled.div`
   display: flex;
@@ -22,13 +23,27 @@ const SongPageHeaderContainer = styled.div`
 `
 
 const SongPage = ({ audioCards }) => {
+  const [listViewSelected, setListViewSelected] = useState(true)
+
+  const handleViewSelection = () => {
+    setListViewSelected(!listViewSelected)
+  }
+
   return (
     <SongPageContent>
-      <SongPageHeaderContainer>
-        <Breadcrumb />
-        <Searchbox />
-      </SongPageHeaderContainer>
-      <RecentMedia audioCards={audioCards} />
+      <VerticalWrapper>
+        <SongPageHeaderContainer>
+          <Breadcrumb />
+          <SearchBox
+            listViewSelected={listViewSelected}
+            handleViewSelection={handleViewSelection}
+          />
+        </SongPageHeaderContainer>
+        <RecentMediaContent
+          audioCards={audioCards}
+          listViewSelected={listViewSelected}
+        />
+      </VerticalWrapper>
     </SongPageContent>
   )
 }

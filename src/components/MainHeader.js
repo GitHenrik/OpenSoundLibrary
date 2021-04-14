@@ -9,6 +9,7 @@ import { Brand } from './Brands'
 import Dropdown from './Dropdown'
 import useUser from '../hooks/useUser'
 import Constants from '../Constants'
+import { WhiteIconWrapper } from './utils/Wrappers'
 
 const Wrapper = styled.div`
   background-color: #111111;
@@ -91,11 +92,15 @@ const MainHeader = () => {
       <Wrapper>
         <Header>
           <Dropdown links={menuLinks}>
-            <FontAwesomeIcon size="lg" icon={faCompactDisc} />
+            <WhiteIconWrapper>
+              <FontAwesomeIcon size="lg" icon={faCompactDisc} />
+            </WhiteIconWrapper>
           </Dropdown>
           <Brand>Open Sound Lib</Brand>
           <Dropdown links={userLinks}>
-            <FontAwesomeIcon size="lg" icon={faUser} />
+            <WhiteIconWrapper>
+              <FontAwesomeIcon size="lg" icon={faUser} />
+            </WhiteIconWrapper>
           </Dropdown>
         </Header>
       </Wrapper>

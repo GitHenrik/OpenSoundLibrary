@@ -1,9 +1,11 @@
 import React from 'react'
 import SearchBar from './SearchBar'
-import RecentMedia from './RecentMedia'
+import RecentMediaContent from './RecentMediaContent'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { SloganBrand } from './Brands'
+import RecentMediaHeader from './RecentMediaHeader'
+import { HorizontalWrapper } from './utils/Wrappers'
 
 const SidebarLeft = styled.div`
   display: ${(props) => (props.hideOnMobile ? 'none' : 'block')};
@@ -56,7 +58,10 @@ const FrontPage = (props) => {
             handleSearchValue={props.handleSearchValue}
           />
         </SearchBarContainer>
-        <RecentMedia audioCards={props.audioCards} />
+        <HorizontalWrapper>
+          <RecentMediaHeader />
+        </HorizontalWrapper>
+        <RecentMediaContent audioCards={props.audioCards} />
       </MainContent>
       <SidebarRight hideOnMobile />
     </FrontPageContainer>
