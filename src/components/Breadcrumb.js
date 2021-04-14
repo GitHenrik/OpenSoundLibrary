@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { BreadcrumbLink } from './common/Links'
+import { WhiteIconWrapper } from './utils/Wrappers'
 import Constants from '../Constants'
 
 const BreadcrumbContainer = styled.div`
@@ -21,7 +22,9 @@ const Breadcrumb = () => {
   return (
     <BreadcrumbContainer>
       <BreadcrumbLink to={Constants.frontPage}>Front page</BreadcrumbLink>
-      <FontAwesomeIcon icon={faAngleRight} />
+      <WhiteIconWrapper>
+        <FontAwesomeIcon icon={faAngleRight} />
+      </WhiteIconWrapper>
       <BreadcrumbLink to={Constants.songPage}>Crumb</BreadcrumbLink>
     </BreadcrumbContainer>
   )

@@ -2,7 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDownload, faHeadphones, faHeart, faPlay } from '@fortawesome/free-solid-svg-icons'
+import {
+  faDownload,
+  faHeadphones,
+  faHeart,
+  faPlay
+} from '@fortawesome/free-solid-svg-icons'
+import { WhiteIconWrapper, AudioControlButtonWrapper } from './utils/Wrappers'
 
 const AudioCardListContainer = styled.div`
   display: flex;
@@ -174,12 +180,14 @@ const ListAudioDataNumber = styled.div`
   padding: 0.5rem 1.5rem 0.5rem 0.5rem;
   display: inline-block;
   font-size: 0.875rem;
+  color: #ffffff;
 `
 
 const GridAudioDataNumber = styled.div`
   padding: 0.5rem 1.5rem 0.5rem 0.5rem;
   display: inline-block;
   font-size: 0.875rem;
+  color: #ffffff;
   @media (min-width: 768px) {
     padding: 0.5rem;
     font-size: 0.625rem;
@@ -201,10 +209,10 @@ const GridSongTitle = styled.div`
   font-weight: normal;
   font-size: 1.625rem;
   line-height: 2.25rem;
-  color: #FFFFFF;
+  color: #ffffff;
   @media (min-width: 768px) {
     font-size: 1rem;
-  line-height: 1.375rem;
+    line-height: 1.375rem;
   }
 `
 
@@ -227,7 +235,7 @@ const GridArtistName = styled.div`
     font-size: 0.75rem;
     line-height: 1rem;
   }
-  color: #B0B0B0;
+  color: #b0b0b0;
 `
 
 const AudioCard = ({ audioData, listViewSelected }) => {
@@ -237,12 +245,8 @@ const AudioCard = ({ audioData, listViewSelected }) => {
   const PictureContainer = listViewSelected
     ? ListPictureContainer
     : GridPictureContainer
-  const SongTitle = listViewSelected
-    ? ListSongTitle
-    : GridSongTitle
-  const ArtistName = listViewSelected
-    ? ListArtistName
-    : GridArtistName
+  const SongTitle = listViewSelected ? ListSongTitle : GridSongTitle
+  const ArtistName = listViewSelected ? ListArtistName : GridArtistName
   const AudioCardBlock = listViewSelected
     ? ListAudioCardBlock
     : GridAudioCardBlock
@@ -252,12 +256,8 @@ const AudioCard = ({ audioData, listViewSelected }) => {
   const AudioDurationContainer = listViewSelected
     ? ListAudioDurationContainer
     : GridAudioDurationContainer
-  const AudioData = listViewSelected
-    ? ListAudioData
-    : GridAudioData
-  const GenreTag = listViewSelected
-    ? ListGenreTag
-    : GridGenreTag
+  const AudioData = listViewSelected ? ListAudioData : GridAudioData
+  const GenreTag = listViewSelected ? ListGenreTag : GridGenreTag
 
   return (
     <AudioCardContainer>
@@ -276,22 +276,30 @@ const AudioCard = ({ audioData, listViewSelected }) => {
           </div>
           <AudioDataContainer>
             <AudioData>
-              <FontAwesomeIcon icon={faHeart} />
+              <WhiteIconWrapper>
+                <FontAwesomeIcon icon={faHeart} />
+              </WhiteIconWrapper>
               <AudioDataNumber>1337</AudioDataNumber>
             </AudioData>
             <AudioData>
-              <FontAwesomeIcon icon={faHeadphones} />
+              <WhiteIconWrapper>
+                <FontAwesomeIcon icon={faHeadphones} />
+              </WhiteIconWrapper>
               <AudioDataNumber>42</AudioDataNumber>
             </AudioData>
             <AudioData>
-              <FontAwesomeIcon icon={faDownload} />
+              <WhiteIconWrapper>
+                <FontAwesomeIcon icon={faDownload} />
+              </WhiteIconWrapper>
               <AudioDataNumber>314</AudioDataNumber>
             </AudioData>
           </AudioDataContainer>
         </AudioInformation>
         <AudioControls>
           <AudioControlButtonContainer>
-            <FontAwesomeIcon icon={faPlay} />
+            <AudioControlButtonWrapper>
+              <FontAwesomeIcon icon={faPlay} />
+            </AudioControlButtonWrapper>
           </AudioControlButtonContainer>
           <AudioDurationContainer>13:37</AudioDurationContainer>
         </AudioControls>

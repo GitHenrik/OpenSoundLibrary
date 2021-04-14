@@ -19,12 +19,11 @@ const GridView = styled.div`
     grid-auto-flow: row;
     row-gap: 46px;
   }
-
 `
 /*
   listViewSelected toggles list / grid view
  */
-const RecentMediaContent = ({ audioCards, listViewSelected = true }) => {
+const RecentMediaContent = ({ audioCards, listViewSelected }) => {
   if (listViewSelected) {
     return (
       <VerticalWrapper>
