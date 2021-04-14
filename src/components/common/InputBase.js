@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const InputWrapper = styled.div`
   height: 34px;
   min-width: 100%;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.75);
   transition: 80ms ease-out;
   display: flex;
@@ -28,7 +28,8 @@ const InputWrapper = styled.div`
     }
   }
 
-  input, button {
+  input,
+  button {
     border: none;
     color: #454545;
     height: 100%;
@@ -40,7 +41,9 @@ const InputWrapper = styled.div`
     }
   }
 
-  input, button, input::placeholder {
+  input,
+  button,
+  input::placeholder {
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 20px;
@@ -75,9 +78,7 @@ const InputBase = ({ icon, children }) => {
   return (
     <InputWrapper>
       {children}
-      { hasIcon &&
-        <IconWrapper>{icon}</IconWrapper>
-      }
+      {hasIcon && <IconWrapper>{icon}</IconWrapper>}
     </InputWrapper>
   )
 }

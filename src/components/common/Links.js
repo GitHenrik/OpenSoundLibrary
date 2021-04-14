@@ -7,7 +7,7 @@ const BreadcrumbLink = styled(Link)`
   font-weight: normal;
   font-size: 20px;
   line-height: 27px;
-  color: #E5E5E5;
+  color: #e5e5e5;
   &:hover {
     color: white;
   }
@@ -15,7 +15,7 @@ const BreadcrumbLink = styled(Link)`
 
 const FooterLink = styled(Link)`
   text-decoration: none;
-  color: #E5E5E5;
+  color: #e5e5e5;
   margin-bottom: 0.5rem;
   &:hover {
     color: white;

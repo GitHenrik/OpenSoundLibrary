@@ -14,12 +14,11 @@ const Wrapper = styled.div`
   background-color: #111111;
   width: 100%;
   height: 5.1875rem;
-
 `
 const Divider = styled.div`
-height: 4px;
-width: 100%;
-background: linear-gradient(to right, #370031, #eaf27c);
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(to right, #370031, #eaf27c);
 `
 
 const Header = styled.header`
@@ -29,7 +28,7 @@ const Header = styled.header`
   background: #111111;
   position: sticky;
   top: 0;
-  padding: 1rem; 
+  padding: 1rem;
   align-items: center;
   @media (min-width: 768px) {
     width: 768px;
@@ -75,10 +74,12 @@ const getUserMenuLinks = (isAuthenticated) => {
     ]
   }
 
-  return [{
-    label: 'Sign in with Google',
-    onClick: () => Auth.federatedSignIn({ provider: 'Google' })
-  }]
+  return [
+    {
+      label: 'Sign in with Google',
+      onClick: () => Auth.federatedSignIn({ provider: 'Google' })
+    }
+  ]
 }
 
 const MainHeader = () => {
@@ -98,7 +99,7 @@ const MainHeader = () => {
           </Dropdown>
         </Header>
       </Wrapper>
-      <Divider/>
+      <Divider />
     </>
   )
 }

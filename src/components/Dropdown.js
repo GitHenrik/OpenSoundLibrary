@@ -11,18 +11,16 @@ const DropdownWrapper = styled.div`
 `
 
 const DropdownMenu = styled.ul`
-  display: ${props => props.open ? 'block' : 'none'};
+  display: ${(props) => (props.open ? 'block' : 'none')};
   position: absolute;
-  background-color: #2E2E2E;
+  background-color: #2e2e2e;
   padding: 0.75rem;
   margin: 0;
-  top: ${props => props.topOffset || 0};
-  ${props =>
-    props.position === DropdownPosition.RIGHT
-    ? 'left: 0'
-    : 'right: 0'
-  };
-  text-align: ${props => props.position === DropdownPosition.RIGHT ? 'left' : 'right'};
+  top: ${(props) => props.topOffset || 0};
+  ${(props) =>
+    props.position === DropdownPosition.RIGHT ? 'left: 0' : 'right: 0'};
+  text-align: ${(props) =>
+    props.position === DropdownPosition.RIGHT ? 'left' : 'right'};
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
   width: 200px;
 
@@ -39,13 +37,14 @@ const DropdownMenu = styled.ul`
     font-weight: 300;
     font-size: 18px;
     letter-spacing: -0.05em;
-    color: #FFFFFF;
+    color: #ffffff;
     display: block;
     text-decoration: none;
   }
 
-  a:hover, a:focus {
-    color: #EAF27C;
+  a:hover,
+  a:focus {
+    color: #eaf27c;
   }
 `
 
@@ -77,7 +76,7 @@ const Dropdown = ({ children, links }) => {
   }, [])
 
   const calcPosition = () =>
-    (screenWidth / 2) > dropdownRef.current.getBoundingClientRect().x
+    screenWidth / 2 > dropdownRef.current.getBoundingClientRect().x
       ? DropdownPosition.RIGHT
       : DropdownPosition.LEFT
 
@@ -114,7 +113,9 @@ const Dropdown = ({ children, links }) => {
 
       return (
         <li key={index} role="menuitem">
-          <a href="#" onClick={handleClick}>{listItem.label}</a>
+          <a href="#" onClick={handleClick}>
+            {listItem.label}
+          </a>
         </li>
       )
     }
@@ -149,12 +150,14 @@ const Dropdown = ({ children, links }) => {
 
 Dropdown.propTypes = {
   children: PropTypes.node,
-  links: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    href: PropTypes.string,
-    onClick: PropTypes.func,
-    to: PropTypes.string
-  }))
+  links: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      href: PropTypes.string,
+      onClick: PropTypes.func,
+      to: PropTypes.string
+    })
+  )
 }
 
 export default Dropdown
