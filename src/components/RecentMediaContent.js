@@ -23,7 +23,7 @@ const GridView = styled.div`
 /*
   listViewSelected toggles list / grid view
  */
-const RecentMediaContent = ({ audioCards, listViewSelected }) => {
+const RecentMediaContent = ({ audioCards, listViewSelected = true }) => {
   if (listViewSelected) {
     return (
       <VerticalWrapper>
