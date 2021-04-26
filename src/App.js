@@ -12,32 +12,15 @@ import './css/base.css'
 import Constants from './Constants'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-
 import { API } from 'aws-amplify'
 import { listTracks } from './graphql/queries'
-
-// const deleteAllData = async (event) => {
-//   event.preventDefault()
-//   const allTracks = await API.graphql({ query: listTracks })
-//   const tracks = allTracks.data.listTracks.items
-//   console.log(tracks)
-//   console.log('Deleting all data')
-//   for (let i = 0; i < tracks.length; i++) {
-//     await API.graphql({
-//       query: deleteTrack,
-//       variables: {
-//         input: { id: tracks[i].id }
-//       }
-//     })
-//   }
-//   console.log('Data destroyed')
-// }
+// require('dotenv').config()
 
 const App = () => {
   const initializeData = async () => {
+
     const media = await API.graphql({ query: listTracks })
     const retrievedTracks = media.data.listTracks.items
-    // TODO: call setAudioCards on the retrieved data
     const updatedAudioCards = []
     retrievedTracks.map((track) => {
       return updatedAudioCards.push({
@@ -45,11 +28,11 @@ const App = () => {
         downloads: track.downloads,
         genre: track.genre,
         id: track.id,
-        imageSrc: '/',
+        imageSrc: track.imageSrc,
         likes: track.likes,
         name: track.name,
         streams: track.streams,
-        trackSrc: '/'
+        trackSrc: track.trackSrc
       })
     })
     setAudioCards(updatedAudioCards)
@@ -110,7 +93,7 @@ const App = () => {
 
   useEffect(() => {
     initializeData()
-  }, []) // TODO: fetch data again after modification (upload)
+  }, []) // TODO: fetch data again after uploads
 
   const handleSearchValue = (event) => {
     setSearchValue(event.target.value)

@@ -12,7 +12,7 @@ const UploadTrack = (props) => {
           <input
             id="uploadTrackInput"
             type="file"
-            accept="audio/wav"
+            accept="audio/wav,audio/mp3"
             onChange={props.handleTrackChange}
           />
           <div>Success icon</div>

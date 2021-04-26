@@ -8,12 +8,15 @@ import { API, Storage } from 'aws-amplify'
 import { createTrack } from '../graphql/mutations'
 import { listTracks } from '../graphql/queries'
 import UploadTrack from './UploadTrack'
+import awsExports from '../aws-exports'
+import { v4 as uuid } from 'uuid'
 
 const UploadPageContainer = styled.div`
   margin: 0;
   background: linear-gradient(#65005a, #0b0033);
   color: #ffffff;
   width: 100%;
+  padding-bottom: 5rem;
 `
 
 const UploadTrackForm = styled.form`
@@ -67,11 +70,13 @@ const UploadPage = () => {
   const [artistName, setArtistName] = useState('')
   const [trackFile, setTrackFile] = useState(null)
   const [trackFileName, setTrackFileName] = useState('')
+  const [trackFileExtension, setTrackFileExtension] = useState('')
   const [trackFileSize, setTrackFileSize] = useState('')
   const [trackFileLength, setTrackFileLength] = useState('')
   // const [trackGenres, setTrackGenres] = useState([])
   const [trackImageFileSize, setTrackImageFileSize] = useState('')
   const [trackImageName, setTrackImageName] = useState('')
+  const [trackImageExtension, setTrackImageExtension] = useState('')
   const [thumbnailImage, setThumbnailImage] = useState(trackImagePlaceholder)
   const [trackImageFile, setTrackImageFile] = useState(null)
   const [uploadProgress, setUploadProgress] = useState('0')
@@ -87,7 +92,8 @@ const UploadPage = () => {
     }
     setTrackImageFile(imgFile)
     setThumbnailImage(URL.createObjectURL(imgFile)) // blob URL object for thumbnail
-    setTrackImageName(imgFile.name)
+    setTrackImageName(imgFile.name.split('.')[0])
+    setTrackImageExtension(imgFile.name.split('.')[1])
     setTrackImageFileSize(String((imgFile.size / (1024 * 1024)).toFixed(2)) + 'MB')
   }
 
@@ -100,32 +106,58 @@ const UploadPage = () => {
       return
     }
     setTrackFile(selectedFile)
-    setTrackFileName(selectedFile.name)
+    setTrackFileName(selectedFile.name.split('.')[0])
+    setTrackFileExtension(selectedFile.name.split('.')[1])
     setTrackFileSize(String((selectedFile.size / (1024 * 1024)).toFixed(2)) + 'MB')
     setTrackFileLength('Track length mm:ss')
   }
 
-  const handleTrackUpload = async (event) => {
+  const handleUpload = async (event) => {
     event.preventDefault()
+    // TODO: error checks
+    if (!trackFile || !trackName || !artistName) {
+      alert('Fill in all required information!')
+      return
+    }
+    let imageSource = '/'
     // upload image file
-    await Storage.put(`images/${trackName}-${artistName}.jpg`, trackImageFile)
-    // upload audio file
-    await Storage.put(`audio/${trackName}-${artistName}.wav`, trackFile, {
-      // track upload progress
-      progressCallback(progress) {
-        setUploadProgress(String((progress.loaded/progress.total*100).toFixed(1)))
+    if (trackImageFile) {
+      try {
+        const key = `images/${uuid()}${trackImageName}.${trackImageExtension}`
+        const bucket = awsExports.aws_user_files_s3_bucket
+        const region = awsExports.aws_user_files_s3_bucket_region
+        imageSource = `https://${bucket}.s3.${region}.amazonaws.com/public/${key}`
+        await Storage.put(key, trackImageFile)
+       
+    }
+      catch (error) {
+        console.log('error: ', error)
       }
-    })
+    }
+    
+    // upload audio file
+    try {
+      await Storage.put(`audio/${trackName}-${artistName}.${trackFileExtension}`, trackFile, {
+        // track upload progress
+        progressCallback(progress) {
+          setUploadProgress(String((progress.loaded/progress.total*100).toFixed(1)))
+        }
+      })
+    }
+    catch (error) {
+      console.log('error: ', error)
+    }
+    
     // TODO:  save image and track file sources and genres
     const newTrack = {
-      imageSrc: 'image-source',
+      imageSrc: imageSource,
       name: trackName,
       artistName: artistName,
       genre: ['metal'],
       trackSrc: 'track-source',
-      likes: 123,
-      streams: 234,
-      downloads: 543
+      likes: 0,
+      streams: 0,
+      downloads: 0
     }
     await API.graphql({
       query: createTrack,
@@ -149,7 +181,7 @@ const UploadPage = () => {
     <UploadPageContainer>
       <VerticalWrapper>
         <Breadcrumb />
-        <UploadTrackForm onSubmit={handleTrackUpload}>
+        <UploadTrackForm onSubmit={handleUpload}>
           <UploadTrackFormHeader>Upload sounds</UploadTrackFormHeader>
           <UploadTrackFormInfo>
             Fill in track name and artist name, select genres and optionally
