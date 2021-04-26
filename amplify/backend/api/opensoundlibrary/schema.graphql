@@ -1,0 +1,11 @@
+type Track @model {
+  id: ID!
+  name: String!
+  artistName: String!
+  genre: [String]!
+  imageSrc: String
+  trackSrc: String!
+  likes: Int
+  streams: Int
+  downloads: Int
+}

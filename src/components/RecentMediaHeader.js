@@ -17,6 +17,7 @@ const RecentMediaTitleWrapper = styled.div`
   padding-left: 10px;
   padding-bottom: 15px;
   margin: 0;
+  color: #ffffff;
 `
 
 const RecentMediaHeaderWrapper = styled.div`
@@ -34,8 +35,9 @@ const RecentMediaHeader = () => {
         <RecentMediaTitleWrapper>Recent uploads</RecentMediaTitleWrapper>
         <HorizontalWrapper>
           <ShowAllMediaWrapper>
-            <FooterLink to={Constants.songPage}>Show all</FooterLink>
-            <FontAwesomeIcon size="lg" icon={faAngleRight} />
+            <FooterLink to={Constants.songPage}>
+              Show all <FontAwesomeIcon size="lg" icon={faAngleRight} />
+            </FooterLink>
           </ShowAllMediaWrapper>
         </HorizontalWrapper>
       </HorizontalWrapper>

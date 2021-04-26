@@ -8,7 +8,7 @@ import {
   faHeart,
   faPlay
 } from '@fortawesome/free-solid-svg-icons'
-import { WhiteIconWrapper, AudioControlButtonWrapper } from './utils/Wrappers'
+import { AudioControlButtonWrapper } from './utils/Wrappers'
 
 const AudioCardListContainer = styled.div`
   display: flex;
@@ -167,6 +167,9 @@ const ListAudioData = styled.div`
   flex-wrap: nowrap;
   display: flex;
   align-items: center;
+  path {
+    color: #ffffff;
+  }
 `
 
 const GridAudioData = styled.div`
@@ -174,6 +177,9 @@ const GridAudioData = styled.div`
   flex-wrap: nowrap;
   display: flex;
   align-items: center;
+  path {
+    color: #ffffff;
+  }
 `
 
 const ListAudioDataNumber = styled.div`
@@ -262,36 +268,34 @@ const AudioCard = ({ audioData, listViewSelected }) => {
   return (
     <AudioCardContainer>
       <div>
-        <PictureContainer src={audioData.src} alt="A picture of the album" />
+        <PictureContainer
+          src={audioData.imageSrc}
+          alt="A picture of the album"
+        />
       </div>
       <AudioCardBlock>
         <AudioInformation>
           <div>
-            <SongTitle>Song about Loremious</SongTitle>
-            <ArtistName>Ipsum Artist</ArtistName>
+            <SongTitle>{audioData.name}</SongTitle>
+            <ArtistName>{audioData.artistName}</ArtistName>
             <GenreContainer>
-              <GenreTag>HOP HIP</GenreTag>
-              <GenreTag>SKA RAP</GenreTag>
+              {audioData.genre.map((genreName, i) => {
+                return <GenreTag key={i}>{genreName}</GenreTag>
+              })}
             </GenreContainer>
           </div>
           <AudioDataContainer>
             <AudioData>
-              <WhiteIconWrapper>
-                <FontAwesomeIcon icon={faHeart} />
-              </WhiteIconWrapper>
-              <AudioDataNumber>1337</AudioDataNumber>
+              <FontAwesomeIcon icon={faHeart} />
+              <AudioDataNumber>{audioData.likes}</AudioDataNumber>
             </AudioData>
             <AudioData>
-              <WhiteIconWrapper>
-                <FontAwesomeIcon icon={faHeadphones} />
-              </WhiteIconWrapper>
-              <AudioDataNumber>42</AudioDataNumber>
+              <FontAwesomeIcon icon={faHeadphones} />
+              <AudioDataNumber>{audioData.streams}</AudioDataNumber>
             </AudioData>
             <AudioData>
-              <WhiteIconWrapper>
-                <FontAwesomeIcon icon={faDownload} />
-              </WhiteIconWrapper>
-              <AudioDataNumber>314</AudioDataNumber>
+              <FontAwesomeIcon icon={faDownload} />
+              <AudioDataNumber>{audioData.downloads}</AudioDataNumber>
             </AudioData>
           </AudioDataContainer>
         </AudioInformation>

@@ -13,10 +13,11 @@ const VerticalWrapper = styled.div`
   margin: 0;
 `
 
-const WhiteIconWrapper = styled.div`
+const AlignLeftWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin: 0;
-  padding: 0;
-  color: #ffffff;
 `
 
 const AudioControlButtonWrapper = styled.div`
@@ -28,6 +29,6 @@ const AudioControlButtonWrapper = styled.div`
 export {
   HorizontalWrapper,
   VerticalWrapper,
-  WhiteIconWrapper,
-  AudioControlButtonWrapper
+  AudioControlButtonWrapper,
+  AlignLeftWrapper
 }
