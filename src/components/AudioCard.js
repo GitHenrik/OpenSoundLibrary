@@ -14,6 +14,7 @@ const AudioCardListContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
   @media (min-width: 768px) {
     flex-direction: row;
     height: 241px;
@@ -30,6 +31,7 @@ const AudioCardGridContainer = styled.div`
   justify-content: space-between;
   background: #111111;
   margin-bottom: 1.5rem;
+  width:100%;
 `
 
 const ListPictureContainer = styled.img`
