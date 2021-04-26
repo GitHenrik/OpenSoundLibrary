@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import ButtonBase from './utils/ButtonBase'
+import ButtonBase from './common/ButtonBase'
 import useWindowSize from '../hooks/useWindowSize'
 import { Link } from 'react-router-dom'
 

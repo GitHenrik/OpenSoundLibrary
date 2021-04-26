@@ -123,7 +123,6 @@ const App = () => {
           />
         </Route>
       </Switch>
-
       <Footer />
     </Router>
   )

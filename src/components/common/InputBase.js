@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const InputWrapper = styled.div`
   height: 34px;
-  min-width: 100%;
+  width: 100%;
   background: #ffffff;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.75);
   transition: 80ms ease-out;
@@ -22,7 +22,7 @@ const InputWrapper = styled.div`
 
   @media (min-width: 768px) {
     height: 48px;
-    min-width: 180px;
+    width: 180px;
     &:focus-within {
       outline: 4px solid rgba(234, 242, 124, 0.8);
     }
@@ -30,6 +30,7 @@ const InputWrapper = styled.div`
 
   input,
   button {
+    width: 100%;
     border: none;
     color: #454545;
     height: 100%;
