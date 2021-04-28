@@ -22,7 +22,7 @@ const InputWrapper = styled.div`
 
   @media (min-width: 768px) {
     height: 48px;
-    width: 180px;
+    width: ${(props) => props.fullWidth ? '100%' : '180px'};
     &:focus-within {
       outline: 4px solid rgba(234, 242, 124, 0.8);
     }
@@ -46,7 +46,7 @@ const InputWrapper = styled.div`
   button,
   input::placeholder {
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 20px;
     @media (min-width: 768px) {
       font-size: 1.125rem;
@@ -63,6 +63,10 @@ const InputWrapper = styled.div`
   }
 `
 
+InputWrapper.propTypes = {
+  fullWidth: PropTypes.bool
+}
+
 const IconWrapper = styled.div`
   width: 30px;
   text-align: center;
@@ -73,11 +77,11 @@ const IconWrapper = styled.div`
   }
 `
 
-const InputBase = ({ icon, children }) => {
+const InputBase = ({ icon, children, fullWidth }) => {
   const hasIcon = Boolean(icon)
 
   return (
-    <InputWrapper>
+    <InputWrapper fullWidth={fullWidth}>
       {children}
       {hasIcon && <IconWrapper>{icon}</IconWrapper>}
     </InputWrapper>
@@ -86,7 +90,8 @@ const InputBase = ({ icon, children }) => {
 
 InputBase.propTypes = {
   icon: PropTypes.node,
-  children: PropTypes.node
+  children: PropTypes.node,
+  fullWidth: PropTypes.bool
 }
 
 export default InputBase

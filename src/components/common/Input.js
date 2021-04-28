@@ -8,9 +8,9 @@ import InputBase from './InputBase'
  * @param {Props} props Props with icon component, value and onChange handler
  * @returns {React.ReactNode} Input component
  */
-const Input = ({ icon, ...props }) => {
+const Input = ({ icon, fullWidth, ...props }) => {
   return (
-    <InputBase icon={icon}>
+    <InputBase icon={icon} fullWidth={fullWidth} >
       <input {...props} />
     </InputBase>
   )
@@ -19,7 +19,9 @@ const Input = ({ icon, ...props }) => {
 Input.propTypes = {
   icon: PropTypes.node,
   value: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  className: PropTypes.string,
+  fullWidth: PropTypes.bool
 }
 
 export default Input
