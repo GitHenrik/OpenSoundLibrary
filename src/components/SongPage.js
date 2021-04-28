@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Breadcrumb from './Breadcrumb'
 import styled from 'styled-components'
 import RecentMediaContent from './RecentMediaContent'
-import SearchBox from './SearchBox'
+import SearchBox from './Searchbox'
 import PropTypes from 'prop-types'
 import { VerticalWrapper } from './utils/Wrappers'
 
