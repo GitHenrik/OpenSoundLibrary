@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const InputWrapper = styled.div`
   height: 34px;
-  min-width: 100%;
+  width: 100%;
   background: #ffffff;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.75);
   transition: 80ms ease-out;
@@ -22,7 +22,7 @@ const InputWrapper = styled.div`
 
   @media (min-width: 768px) {
     height: 48px;
-    min-width: 180px;
+    width: ${(props) => props.fullWidth ? '100%' : '180px'};
     &:focus-within {
       outline: 4px solid rgba(234, 242, 124, 0.8);
     }
@@ -30,6 +30,7 @@ const InputWrapper = styled.div`
 
   input,
   button {
+    width: 100%;
     border: none;
     color: #454545;
     height: 100%;
@@ -45,7 +46,7 @@ const InputWrapper = styled.div`
   button,
   input::placeholder {
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 20px;
     @media (min-width: 768px) {
       font-size: 1.125rem;
@@ -62,6 +63,10 @@ const InputWrapper = styled.div`
   }
 `
 
+InputWrapper.propTypes = {
+  fullWidth: PropTypes.bool
+}
+
 const IconWrapper = styled.div`
   width: 30px;
   text-align: center;
@@ -72,11 +77,11 @@ const IconWrapper = styled.div`
   }
 `
 
-const InputBase = ({ icon, children }) => {
+const InputBase = ({ icon, children, fullWidth }) => {
   const hasIcon = Boolean(icon)
 
   return (
-    <InputWrapper>
+    <InputWrapper fullWidth={fullWidth}>
       {children}
       {hasIcon && <IconWrapper>{icon}</IconWrapper>}
     </InputWrapper>
@@ -85,7 +90,8 @@ const InputBase = ({ icon, children }) => {
 
 InputBase.propTypes = {
   icon: PropTypes.node,
-  children: PropTypes.node
+  children: PropTypes.node,
+  fullWidth: PropTypes.bool
 }
 
 export default InputBase
