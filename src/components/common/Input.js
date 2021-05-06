@@ -10,7 +10,7 @@ import InputBase from './InputBase'
  */
 const Input = ({ icon, fullWidth, ...props }) => {
   return (
-    <InputBase icon={icon} fullWidth={fullWidth} >
+    <InputBase icon={icon} fullWidth={fullWidth}>
       <input {...props} />
     </InputBase>
   )
@@ -20,6 +20,7 @@ Input.propTypes = {
   icon: PropTypes.node,
   value: PropTypes.string,
   onChange: PropTypes.func,
+  onBlur: PropTypes.func,
   className: PropTypes.string,
   fullWidth: PropTypes.bool
 }

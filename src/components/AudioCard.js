@@ -10,47 +10,30 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { AudioControlButtonWrapper } from './utils/Wrappers'
 
-const AudioCardListContainer = styled.div`
+const AudioCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: #111111;
+  margin-bottom: 1.5rem;
   width: 100%;
-  @media (min-width: 768px) {
+  ${(props) =>
+    props.listViewSelected &&
+    `@media (min-width: 768px) {
     flex-direction: row;
     height: 241px;
     width: 768px;
     border-right: 4px solid #eaf27c;
-  }
-  background: #111111;
-  margin-bottom: 1.5rem;
+  }`}
 `
 
-const AudioCardGridContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: #111111;
-  margin-bottom: 1.5rem;
-  width:100%;
-`
-
-const ListPictureContainer = styled.img`
+const PictureContainer = styled.img`
   width: 100%;
   height: 100vmin;
   object-fit: cover;
   @media (min-width: 768px) {
-    width: 241px;
-    height: 241px;
-  }
-`
-
-const GridPictureContainer = styled.img`
-  width: 100%;
-  height: 100vmin;
-  object-fit: cover;
-  @media (min-width: 768px) {
-    width: 228px;
-    height: 228px;
+    width: ${(props) => (props.listViewSelected ? '241px' : '228px')};
+    height: ${(props) => (props.listViewSelected ? '241px' : '228px')};
   }
 `
 
@@ -65,22 +48,7 @@ const GenreContainer = styled.div`
   flex-direction: row;
 `
 
-const ListGenreTag = styled.div`
-  display: inline-block;
-  padding: 0 0.75rem;
-  background: #eaf27c;
-  border-radius: 27.5px;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  text-align: center;
-  letter-spacing: -0.02em;
-  color: #000000;
-  margin-right: 1rem;
-`
-
-const GridGenreTag = styled.div`
+const GenreTag = styled.div`
   display: inline-block;
   padding: 0 0.75rem;
   background: #eaf27c;
@@ -94,10 +62,10 @@ const GridGenreTag = styled.div`
   color: #000000;
   margin-right: 1rem;
   @media (min-width: 768px) {
-    margin-right: 0.5rem;
-    padding: 0 0.5rem;
-    font-size: 0.5rem;
-    line-height: 0.6875rem;
+    margin-right: ${(props) => (props.listViewSelected ? '1rem' : '0.5rem')};
+    padding: ${(props) => (props.listViewSelected ? '0 0.75rem' : '0 0.5rem')};
+    font-size: ${(props) => (props.listViewSelected ? '0.75rem' : '0.5rem')};
+    line-height: ${(props) => (props.listViewSelected ? '1rem' : '0.6875rem')};
   }
 `
 
@@ -111,38 +79,18 @@ const AudioControlButtonContainer = styled.div`
   text-align: center;
 `
 
-const ListAudioCardBlock = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 1.5rem;
-`
-
-const GridAudioCardBlock = styled.div`
+const AudioCardBlock = styled.div`
   display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
   padding: 1.5rem;
   @media (min-width: 768px) {
-    padding: 0.5rem;
+    padding: ${(props) => (props.listViewSelected ? '1.5rem' : '0.5rem')};
   }
 `
 
-const ListAudioDurationContainer = styled.div`
-  left: 90%;
-  right: 3.97%;
-  top: 10.79%;
-  bottom: 78.84%;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 1.125rem;
-  line-height: 1.5rem;
-  color: #b0b0b0;
-`
-
-const GridAudioDurationContainer = styled.div`
+const AudioDurationContainer = styled.div`
   left: 90%;
   right: 3.97%;
   top: 10.79%;
@@ -153,7 +101,7 @@ const GridAudioDurationContainer = styled.div`
   line-height: 1.5rem;
   color: #b0b0b0;
   @media (min-width: 768px) {
-    display: none;
+    display: ${(props) => (props.listViewSelected ? 'inline-block' : 'none')};
   }
 `
 
@@ -164,7 +112,7 @@ const AudioDataContainer = styled.div`
   flex-wrap: nowrap;
 `
 
-const ListAudioData = styled.div`
+const AudioData = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   display: flex;
@@ -174,44 +122,19 @@ const ListAudioData = styled.div`
   }
 `
 
-const GridAudioData = styled.div`
-  flex-direction: row;
-  flex-wrap: nowrap;
-  display: flex;
-  align-items: center;
-  path {
-    color: #ffffff;
-  }
-`
-
-const ListAudioDataNumber = styled.div`
-  padding: 0.5rem 1.5rem 0.5rem 0.5rem;
-  display: inline-block;
-  font-size: 0.875rem;
-  color: #ffffff;
-`
-
-const GridAudioDataNumber = styled.div`
+const AudioDataNumber = styled.div`
   padding: 0.5rem 1.5rem 0.5rem 0.5rem;
   display: inline-block;
   font-size: 0.875rem;
   color: #ffffff;
   @media (min-width: 768px) {
-    padding: 0.5rem;
-    font-size: 0.625rem;
+    padding: ${(props) =>
+      props.listViewSelected ? '0.5rem 1.5rem 0.5rem 0.5rem' : '0.5rem'};
+    font-size: ${(props) => (props.listViewSelected ? '0.625rem' : '0.875rem')};
   }
 `
 
-const ListSongTitle = styled.div`
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 1.625rem;
-  line-height: 2.25rem;
-  color: #ffffff;
-`
-
-const GridSongTitle = styled.div`
+const SongTitle = styled.div`
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
@@ -219,67 +142,44 @@ const GridSongTitle = styled.div`
   line-height: 2.25rem;
   color: #ffffff;
   @media (min-width: 768px) {
-    font-size: 1rem;
-    line-height: 1.375rem;
+    font-size: ${(props) => (props.listViewSelected ? '1.625rem' : '1rem')};
+    line-height: ${(props) =>
+      props.listViewSelected ? '2.25rem' : '1.375rem'};
   }
 `
 
-const ListArtistName = styled.div`
+const ArtistName = styled.div`
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
   font-size: 1rem;
   line-height: 1.375rem;
   color: #b0b0b0;
-`
-
-const GridArtistName = styled.div`
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 1rem;
-  line-height: 1.375rem;
   @media (min-width: 768px) {
-    font-size: 0.75rem;
-    line-height: 1rem;
+    font-size: ${(props) => (props.listViewSelected ? '1rem' : '0.75rem')};
+    line-height: ${(props) => (props.listViewSelected ? '1.375rem' : '1rem')};
   }
-  color: #b0b0b0;
 `
 
 const AudioCard = ({ audioData, listViewSelected }) => {
-  const AudioCardContainer = listViewSelected
-    ? AudioCardListContainer
-    : AudioCardGridContainer
-  const PictureContainer = listViewSelected
-    ? ListPictureContainer
-    : GridPictureContainer
-  const SongTitle = listViewSelected ? ListSongTitle : GridSongTitle
-  const ArtistName = listViewSelected ? ListArtistName : GridArtistName
-  const AudioCardBlock = listViewSelected
-    ? ListAudioCardBlock
-    : GridAudioCardBlock
-  const AudioDataNumber = listViewSelected
-    ? ListAudioDataNumber
-    : GridAudioDataNumber
-  const AudioDurationContainer = listViewSelected
-    ? ListAudioDurationContainer
-    : GridAudioDurationContainer
-  const AudioData = listViewSelected ? ListAudioData : GridAudioData
-  const GenreTag = listViewSelected ? ListGenreTag : GridGenreTag
-
   return (
-    <AudioCardContainer>
+    <AudioCardContainer listViewSelected={listViewSelected}>
       <div>
         <PictureContainer
           src={audioData.imageSrc}
           alt="A picture of the album"
+          listViewSelected={listViewSelected}
         />
       </div>
-      <AudioCardBlock>
+      <AudioCardBlock listViewSelected={listViewSelected}>
         <AudioInformation>
           <div>
-            <SongTitle>{audioData.name}</SongTitle>
-            <ArtistName>{audioData.artistName}</ArtistName>
+            <SongTitle listViewSelected={listViewSelected}>
+              {audioData.name}
+            </SongTitle>
+            <ArtistName listViewSelected={listViewSelected}>
+              {audioData.artistName}
+            </ArtistName>
             <GenreContainer>
               {audioData.genre.map((genreName, i) => {
                 return <GenreTag key={i}>{genreName}</GenreTag>
@@ -289,25 +189,33 @@ const AudioCard = ({ audioData, listViewSelected }) => {
           <AudioDataContainer>
             <AudioData>
               <FontAwesomeIcon icon={faHeart} />
-              <AudioDataNumber>{audioData.likes}</AudioDataNumber>
+              <AudioDataNumber listViewSelected={listViewSelected}>
+                {audioData.likes}
+              </AudioDataNumber>
             </AudioData>
             <AudioData>
               <FontAwesomeIcon icon={faHeadphones} />
-              <AudioDataNumber>{audioData.streams}</AudioDataNumber>
+              <AudioDataNumber listViewSelected={listViewSelected}>
+                {audioData.streams}
+              </AudioDataNumber>
             </AudioData>
             <AudioData>
               <FontAwesomeIcon icon={faDownload} />
-              <AudioDataNumber>{audioData.downloads}</AudioDataNumber>
+              <AudioDataNumber listViewSelected={listViewSelected}>
+                {audioData.downloads}
+              </AudioDataNumber>
             </AudioData>
           </AudioDataContainer>
         </AudioInformation>
         <AudioControls>
           <AudioControlButtonContainer>
-            <AudioControlButtonWrapper>
+            <AudioControlButtonWrapper listViewSelected={listViewSelected}>
               <FontAwesomeIcon icon={faPlay} />
             </AudioControlButtonWrapper>
           </AudioControlButtonContainer>
-          <AudioDurationContainer>13:37</AudioDurationContainer>
+          <AudioDurationContainer listViewSelected={listViewSelected}>
+            13:37
+          </AudioDurationContainer>
         </AudioControls>
       </AudioCardBlock>
     </AudioCardContainer>
