@@ -2,6 +2,7 @@ import React from 'react'
 import { HorizontalWrapper, AlignLeftWrapper } from './utils/Wrappers'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { getFileMetaData } from '../util/file'
 
 const UploadImageWrapper = styled.div`
   #uploadImg {
@@ -78,12 +79,9 @@ const ImageInfo = styled.div`
   color: #ffffff;
 `
 
-const UploadImage = ({
-  trackImage,
-  trackImageName,
-  trackImageFileSize,
-  handleImageChange
-}) => {
+const UploadImage = ({ file, handleImageChange }) => {
+  const { fileName, fileSize } = getFileMetaData(file)
+  const thumbnailSource = !file ? '' : URL.createObjectURL(file)
   return (
     <UploadImageWrapper>
       <AlignLeftWrapper>
@@ -92,7 +90,7 @@ const UploadImage = ({
           <HorizontalWrapper>
             <AlignLeftWrapper>
               <UploadImageSubHeader>Image preview</UploadImageSubHeader>
-              <ImageContainer src={trackImage} alt="Track image" />
+              <ImageContainer src={thumbnailSource} alt="Track image" />
             </AlignLeftWrapper>
             <AlignLeftWrapper>
               <UploadImageSubHeader>Image upload and info</UploadImageSubHeader>
@@ -104,10 +102,10 @@ const UploadImage = ({
                 onChange={handleImageChange}
               />
               <ImageInfoTitle>
-                File name: <ImageInfo>{trackImageName}</ImageInfo>
+                File name: <ImageInfo>{fileName}</ImageInfo>
               </ImageInfoTitle>
               <ImageInfoTitle>
-                File size: <ImageInfo>{trackImageFileSize}</ImageInfo>
+                File size: <ImageInfo>{fileSize}</ImageInfo>
               </ImageInfoTitle>
             </AlignLeftWrapper>
           </HorizontalWrapper>
@@ -118,9 +116,7 @@ const UploadImage = ({
 }
 
 UploadImage.propTypes = {
-  trackImage: PropTypes.string,
-  trackImageFileSize: PropTypes.string,
-  trackImageName: PropTypes.string,
+  file: PropTypes.object,
   handleImageChange: PropTypes.func
 }
 

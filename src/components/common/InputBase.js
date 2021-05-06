@@ -22,7 +22,7 @@ const InputWrapper = styled.div`
 
   @media (min-width: 768px) {
     height: 48px;
-    width: ${(props) => props.fullWidth ? '100%' : '180px'};
+    width: ${(props) => (props.fullWidth ? '100%' : '180px')};
     &:focus-within {
       outline: 4px solid rgba(234, 242, 124, 0.8);
     }

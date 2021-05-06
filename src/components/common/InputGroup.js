@@ -7,14 +7,16 @@ import ButtonBase from './ButtonBase'
 
 /**
  * Input with a button element
- * @returns 
+ * @returns
  */
 const InputGroup = () => {
   return (
     <InputBase
-      icon={<ButtonBase>
-        <FontAwesomeIcon icon={faPlusCircle} />
-      </ButtonBase>}
+      icon={
+        <ButtonBase>
+          <FontAwesomeIcon icon={faPlusCircle} />
+        </ButtonBase>
+      }
     >
       <input placeholder="asd" />
     </InputBase>

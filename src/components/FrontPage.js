@@ -21,14 +21,19 @@ const Banner = styled.div`
   height: 360px;
 
   &::after {
-    background: linear-gradient(180deg, rgba(11, 0, 51, 0.9) 0%, rgba(55, 0, 49, 0.8) 47.92%, rgba(131, 34, 50, 0.3) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(11, 0, 51, 0.9) 0%,
+      rgba(55, 0, 49, 0.8) 47.92%,
+      rgba(131, 34, 50, 0.3) 100%
+    );
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     z-index: -1;
@@ -41,18 +46,18 @@ const Banner = styled.div`
     padding: 3rem 0;
   }
 
-  @media(min-width: 400px) {
+  @media (min-width: 400px) {
     height: 400px;
   }
 
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     height: 400px;
     h1 {
       font-size: 2.5rem;
     }
   }
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     height: 650px;
     h1 {
       font-size: 2.5rem;
@@ -60,7 +65,7 @@ const Banner = styled.div`
     }
   }
 
-  @media(min-width: 900px) {
+  @media (min-width: 900px) {
     height: 650px;
     h1 {
       font-size: 2.5rem;
@@ -78,22 +83,22 @@ const BannerContent = styled.div`
   z-index: 2;
   padding: 0 1rem;
 
-  @media(min-width: 400px) {
+  @media (min-width: 400px) {
     width: 400px;
     margin: auto;
   }
 
-  @media(min-width: 400px) {
+  @media (min-width: 400px) {
     width: 400px;
     margin: auto;
   }
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     width: 486px;
     margin: auto;
   }
 
-  @media(min-width: 900px) {
+  @media (min-width: 900px) {
     width: 800px;
     margin: auto;
 
@@ -110,7 +115,7 @@ const BannerContent = styled.div`
 `
 
 const RecentContentBackground = styled.div`
-  background: linear-gradient(180deg, #65005A 0%, rgba(11, 0, 51, 0.9) 100%);
+  background: linear-gradient(180deg, #65005a 0%, rgba(11, 0, 51, 0.9) 100%);
 `
 
 const RecentContent = styled.section`
@@ -133,13 +138,13 @@ const RecentContent = styled.section`
     }
   }
 
-  @media(min-width: 400px) {
+  @media (min-width: 400px) {
     header {
       padding: 0 1rem;
     }
   }
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     width: 768px;
     margin-left: auto;
     margin-right: auto;
@@ -163,8 +168,10 @@ const ShowAllLink = styled(Link)`
     margin-right: 0.5rem;
   }
 
-  &:hover, &:active, &:focus {
-    color: #ffffff
+  &:hover,
+  &:active,
+  &:focus {
+    color: #ffffff;
   }
 `
 

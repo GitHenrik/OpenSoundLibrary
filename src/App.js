@@ -18,7 +18,6 @@ import { listTracks } from './graphql/queries'
 
 const App = () => {
   const initializeData = async () => {
-
     const media = await API.graphql({ query: listTracks })
     const retrievedTracks = media.data.listTracks.items
     const updatedAudioCards = []

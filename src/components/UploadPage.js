@@ -3,13 +3,20 @@ import Breadcrumb from './Breadcrumb'
 import styled from 'styled-components'
 import { VerticalWrapper } from './utils/Wrappers'
 import UploadImage from './UploadImage'
-import trackImagePlaceholder from '../assets/images/trackImagePlaceholder.jpg'
 import { API, Storage } from 'aws-amplify'
 import { createTrack } from '../graphql/mutations'
-import { listTracks } from '../graphql/queries'
 import UploadTrack from './UploadTrack'
 import awsExports from '../aws-exports'
 import { v4 as uuid } from 'uuid'
+import { Formik, useField } from 'formik'
+import PropTypes from 'prop-types'
+import Label from './common/Label'
+import Input from './common/Input'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons'
+import * as Yup from 'yup'
+import { getFileMetaData } from '../util/file'
+import { Redirect } from 'react-router'
 
 const UploadPageContainer = styled.div`
   margin: 0;
@@ -29,6 +36,9 @@ const UploadTrackForm = styled.form`
   @media (min-width: 768px) {
     width: 768px;
     padding: 26px 45px;
+  }
+  button {
+    color: black;
   }
 `
 
@@ -55,106 +65,127 @@ const UploadTrackFormInfo = styled.div`
   padding-bottom: 2rem;
 `
 
-const SubmitTrackButton = styled.button`
-  color: black;
-`
+const FormikField = ({ label, icon, ...props }) => {
+  const [field, meta, helpers] = useField(props)
+  return (
+    <>
+      <Label inputId="1" label={label} />
+      <Input
+        name={field.name}
+        value={field.value}
+        onChange={field.onChange}
+        onBlur={field.onBlur}
+        icon={icon}
+      />
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </>
+  )
+}
 
-const TempInput = styled.input`
-  // TODO: delete after testing
-  color: black;
-`
+FormikField.propTypes = {
+  label: PropTypes.string,
+  icon: PropTypes.node
+}
+
+const FormikUploadField = ({ render, name }) => {
+  const [field, meta, helpers] = useField(name)
+
+  const handleFileChange = (event) => {
+    event.preventDefault()
+    const file = event.target.files[0]
+    if (!file) return
+    // megabytes
+    if (file.size > 1024 * 1024 * 20) {
+      helpers.setError('File size too large')
+    }
+    helpers.setValue(file)
+  }
+
+  return render(field.value, handleFileChange)
+}
+
+FormikUploadField.propTypes = {
+  render: PropTypes.func,
+  name: PropTypes.string
+}
+
+const initializeState = () => {
+  return {
+    trackName: '',
+    artistName: '',
+    genre: [],
+    trackFile: null,
+    imageFile: null
+  }
+}
+
+// TODO: add validation for files and images
+const UploadSchema = Yup.object().shape({
+  trackName: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  artistName: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  genre: Yup.array().of(Yup.string())
+  // trackFile: Yup.object({}).required('Required'),
+  // imageFile: Yup.object().required('Required'),
+})
 
 const UploadPage = () => {
-  // TODO: database operations for images and audio files
-  const [trackName, setTrackName] = useState('')
-  const [artistName, setArtistName] = useState('')
-  const [trackFile, setTrackFile] = useState(null)
-  const [trackFileName, setTrackFileName] = useState('')
-  const [trackFileExtension, setTrackFileExtension] = useState('')
-  const [trackFileSize, setTrackFileSize] = useState('')
-  const [trackFileLength, setTrackFileLength] = useState('')
-  // const [trackGenres, setTrackGenres] = useState([])
-  const [trackImageFileSize, setTrackImageFileSize] = useState('')
-  const [trackImageName, setTrackImageName] = useState('')
-  const [trackImageExtension, setTrackImageExtension] = useState('')
-  const [thumbnailImage, setThumbnailImage] = useState(trackImagePlaceholder)
-  const [trackImageFile, setTrackImageFile] = useState(null)
   const [uploadProgress, setUploadProgress] = useState('0')
+  const [trackSubmitted, setTrackSubmitted] = useState(false)
 
-  const handleImageChange = (event) => {
-    event.preventDefault()
-    const imgFile = event.target.files[0]
-    if (!imgFile) return
-    // megabytes
-    if (imgFile.size > 1024 * 1024 * 20) {
-      alert('File size too large')
+  const handleSubmit = async (values) => {
+    console.log('submitting')
+    const { trackName, artistName, trackFile, imageFile } = values
+
+    const bucket = awsExports.aws_user_files_s3_bucket
+    const region = awsExports.aws_user_files_s3_bucket_region
+
+    const imageFileMetaData = getFileMetaData(imageFile)
+    if (!imageFileMetaData.fileName) {
+      console.log('missing image file')
       return
     }
-    setTrackImageFile(imgFile)
-    setThumbnailImage(URL.createObjectURL(imgFile)) // blob URL object for thumbnail
-    setTrackImageName(imgFile.name.split('.')[0])
-    setTrackImageExtension(imgFile.name.split('.')[1])
-    setTrackImageFileSize(String((imgFile.size / (1024 * 1024)).toFixed(2)) + 'MB')
-  }
+    const imageKey = `images/${uuid()}_${imageFileMetaData.fileName}`
+    const imageSource = `https://${bucket}.s3.${region}.amazonaws.com/public/${imageKey}`
 
-  const handleTrackChange = async (event) => {
-    const selectedFile = event.target.files[0]
-    if (!selectedFile) return
-    // megabytes
-    if (selectedFile.size > 1024 * 1024 * 50) {
-      alert('File size too large')
+    const trackFileMetaData = getFileMetaData(trackFile)
+    if (!trackFileMetaData.fileName) {
+      console.log('missing track file')
       return
     }
-    setTrackFile(selectedFile)
-    setTrackFileName(selectedFile.name.split('.')[0])
-    setTrackFileExtension(selectedFile.name.split('.')[1])
-    setTrackFileSize(String((selectedFile.size / (1024 * 1024)).toFixed(2)) + 'MB')
-    setTrackFileLength('Track length mm:ss')
-  }
+    const trackKey = `audio/${uuid()}_${trackFileMetaData.fileName}`
+    const trackSource = `https://${bucket}.s3.${region}.amazonaws.com/public/${trackKey}`
 
-  const handleUpload = async (event) => {
-    event.preventDefault()
-    // TODO: error checks
-    if (!trackFile || !trackName || !artistName) {
-      alert('Fill in all required information!')
-      return
-    }
-    let imageSource = '/'
-    // upload image file
-    if (trackImageFile) {
-      try {
-        const key = `images/${uuid()}${trackImageName}.${trackImageExtension}`
-        const bucket = awsExports.aws_user_files_s3_bucket
-        const region = awsExports.aws_user_files_s3_bucket_region
-        imageSource = `https://${bucket}.s3.${region}.amazonaws.com/public/${key}`
-        await Storage.put(key, trackImageFile)
-       
-    }
-      catch (error) {
-        console.log('error: ', error)
-      }
-    }
-    
-    // upload audio file
+    // TODO: get genre information from the form
+
+    // upload image and audio files
     try {
-      await Storage.put(`audio/${trackName}-${artistName}.${trackFileExtension}`, trackFile, {
+      await Storage.put(imageKey, imageFile)
+      await Storage.put(trackKey, trackFile, {
         // track upload progress
         progressCallback(progress) {
-          setUploadProgress(String((progress.loaded/progress.total*100).toFixed(1)))
+          setUploadProgress(
+            String(((progress.loaded / progress.total) * 100).toFixed(1))
+          )
         }
       })
-    }
-    catch (error) {
+    } catch (error) {
       console.log('error: ', error)
     }
-    
-    // TODO:  save image and track file sources and genres
+
     const newTrack = {
       imageSrc: imageSource,
       name: trackName,
       artistName: artistName,
-      genre: ['metal'],
-      trackSrc: 'track-source',
+      genre: ['Pop', 'Rock'],
+      trackSrc: trackSource,
       likes: 0,
       streams: 0,
       downloads: 0
@@ -166,60 +197,68 @@ const UploadPage = () => {
       }
     })
     console.log('Track uploaded')
-    // TODO: route user back to front page 
+    setTrackSubmitted(true)
   }
 
-  const listData = async (event) => {
-    // TODO: for testing, delete later
-    event.preventDefault()
-    const allTracks = await API.graphql({ query: listTracks })
-    console.log('All data:')
-    console.log(allTracks.data.listTracks.items)
-  }
+  // route user back to the front page after submitting a track
+  if (trackSubmitted) return <Redirect to="/" />
 
   return (
     <UploadPageContainer>
       <VerticalWrapper>
         <Breadcrumb />
-        <UploadTrackForm onSubmit={handleUpload}>
-          <UploadTrackFormHeader>Upload sounds</UploadTrackFormHeader>
-          <UploadTrackFormInfo>
-            Fill in track name and artist name, select genres and optionally
-            upload a track picture. Lastly, upload your track as MP3 or WAV
-            file.
-          </UploadTrackFormInfo>
-          <h3>Track name</h3>
-          <TempInput
-            type="text"
-            value={trackName}
-            placeholder="Track *"
-            onChange={(e) => setTrackName(e.target.value)}
-          />
-          <h3>Artist name</h3>
-          <TempInput
-            type="text"
-            value={artistName}
-            placeholder="Artist *"
-            onChange={(e) => setArtistName(e.target.value)}
-          />
-          <UploadImage
-            trackImage={thumbnailImage}
-            trackImageName={trackImageName}
-            trackImageFileSize={trackImageFileSize}
-            handleImageChange={handleImageChange}
-          />
-          <UploadTrack
-            handleTrackChange={handleTrackChange}
-            trackFileLength={trackFileLength}
-            trackFileName={trackFileName}
-            trackFileSize={trackFileSize}
-            uploadProgress={uploadProgress}
-          />
-          <SubmitTrackButton type="submit">Submit track</SubmitTrackButton>
-          <SubmitTrackButton onClick={listData}>
-            List all data (testing)
-          </SubmitTrackButton>
-        </UploadTrackForm>
+        <Formik
+          initialValues={initializeState()}
+          onSubmit={handleSubmit}
+          validationSchema={UploadSchema}
+          validateOnBlur
+          validateOnChange={false}
+        >
+          {(props) => (
+            <UploadTrackForm>
+              <UploadTrackFormHeader>Upload sounds</UploadTrackFormHeader>
+              <UploadTrackFormInfo>
+                Fill in track name and artist name, select genres and optionally
+                upload a track picture. Lastly, upload your track as MP3 or WAV
+                file.
+              </UploadTrackFormInfo>
+              <FormikField
+                name="trackName"
+                label="Track name"
+                icon={<FontAwesomeIcon icon={faCompactDisc} />}
+              />
+              <FormikField
+                name="artistName"
+                label="Artist name"
+                icon={<FontAwesomeIcon icon={faUser} />}
+              />
+              <FormikUploadField
+                name="imageFile"
+                render={(file, handleChange) => (
+                  <UploadImage file={file} handleImageChange={handleChange} />
+                )}
+              />
+              <FormikUploadField
+                name="trackFile"
+                render={(file, handleChange) => (
+                  <UploadTrack
+                    file={file}
+                    handleTrackChange={handleChange}
+                    uploadProgress={uploadProgress}
+                  />
+                )}
+              />
+              {/* eslint-disable-next-line react/prop-types */}
+              <button
+                type="button"
+                // eslint-disable-next-line react/prop-types
+                onClick={() => props.handleSubmit()}
+              >
+                Submit track
+              </button>
+            </UploadTrackForm>
+          )}
+        </Formik>
       </VerticalWrapper>
     </UploadPageContainer>
   )

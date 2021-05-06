@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { getFileMetaData } from '../util/file'
 
-const UploadTrack = (props) => {
+const UploadTrack = ({ file, handleTrackChange, uploadProgress }) => {
+  const { fileLength, fileName, fileSize } = getFileMetaData(file)
 
   return (
     <UploadTrackWrapper>
@@ -13,22 +15,33 @@ const UploadTrack = (props) => {
             id="uploadTrackInput"
             type="file"
             accept="audio/wav,audio/mp3"
-            onChange={props.handleTrackChange}
+            onChange={handleTrackChange}
           />
           <div>Success icon</div>
         </UploadTrackButtonWrapper>
       </UploadTrackFileWrapper>
       <ProgressBarWrapper>
-        <div>Upload progress: {props.uploadProgress} %</div>
+        <div>Upload progress: {uploadProgress} %</div>
       </ProgressBarWrapper>
       <UploadTrackInfoWrapper>
         <div className="uploadTrackHeader">Track details</div>
-        <div className="trackInfoSubHeader">File name:<div className="trackInfo">{props.trackFileName}</div></div>
-        <div className="trackInfoSubHeader">Track size:<div className="trackInfo">{props.trackFileSize}</div></div>
-        <div className="trackInfoSubHeader">Track length:<div className="trackInfo">{props.trackFileLength}</div></div>
+        <div className="trackInfoSubHeader">
+          File name:<div className="trackInfo">{fileName}</div>
+        </div>
+        <div className="trackInfoSubHeader">
+          Track size:<div className="trackInfo">{fileSize}</div>
+        </div>
+        <div className="trackInfoSubHeader">
+          Track length:<div className="trackInfo">{fileLength}</div>
+        </div>
       </UploadTrackInfoWrapper>
     </UploadTrackWrapper>
   )
+}
+
+UploadTrack.propTypes = {
+  file: PropTypes.object,
+  handleTrackChange: PropTypes.func
 }
 
 const UploadTrackWrapper = styled.div`
@@ -56,7 +69,7 @@ const UploadTrackWrapper = styled.div`
     font-weight: 600;
     font-size: 12px;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #ffffff;
     @media (min-width: 768px) {
       font-size: 14px;
       line-height: 19px;
@@ -68,7 +81,7 @@ const UploadTrackWrapper = styled.div`
     font-weight: 300;
     font-size: 12px;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #ffffff;
     @media (min-width: 768px) {
       font-size: 14px;
       line-height: 19px;
